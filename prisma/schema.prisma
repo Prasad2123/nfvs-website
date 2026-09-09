@@ -1,0 +1,236 @@
+generator client {
+  provider = "prisma-client-js"
+  binaryTargets = ["native", "windows"]
+}
+
+datasource db {
+  provider = "sqlite"
+  url      = env("DATABASE_URL")
+}
+
+model User {
+  id                   Int       @id @default(autoincrement())
+  username             String    @unique
+  password_hash        String
+  full_name            String
+  email                String?
+  phone                String?
+  role_id              Int
+  is_active            Boolean   @default(true)
+  must_change_password Boolean   @default(false)
+  last_login           DateTime?
+  created_at           DateTime  @default(now())
+  updated_at           DateTime  @updatedAt
+
+  role                 Role      @relation(fields: [role_id], references: [id])
+  created_customers    Customer[] @relation("CustomerCreatedBy")
+  engineer             Engineer?
+  created_calls        ServiceCall[] @relation("CallCreatedBy")
+  updated_calls        ServiceCall[] @relation("CallUpdatedBy")
+  history_changes      CallHistory[] @relation("HistoryChangedBy")
+  uploaded_attachments CallAttachment[] @relation("AttachmentUploadedBy")
+  completed_followups  FollowUp[] @relation("FollowUpCompletedBy")
+  created_followups    FollowUp[] @relation("FollowUpCreatedBy")
+  notifications        Notification[]
+  audit_logs           AuditLog[]
+  created_backups      BackupHistory[] @relation("BackupCreatedBy")
+
+  @@map("users")
+}
+
+model Role {
+  id          Int      @id @default(autoincrement())
+  name        String   @unique
+  description String?
+  permissions String
+  created_at  DateTime @default(now())
+  users       User[]
+
+  @@map("roles")
+}
+
+model Customer {
+  id            Int      @id @default(autoincrement())
+  customer_code String   @unique
+  name          String
+  company_name  String?
+  phone         String
+  alt_phone     String?
+  email         String?
+  address       String?
+  city          String?
+  state         String?
+  pincode       String?
+  gst_number    String?
+  notes         String?
+  is_active     Boolean  @default(true)
+  created_by    Int?
+  created_at    DateTime @default(now())
+  updated_at    DateTime @updatedAt
+
+  creator       User?    @relation("CustomerCreatedBy", fields: [created_by], references: [id])
+  service_calls ServiceCall[]
+
+  @@map("customers")
+}
+
+model Engineer {
+  id            Int      @id @default(autoincrement())
+  engineer_code String   @unique
+  name          String
+  mobile        String
+  email         String?
+  address       String?
+  department    String?
+  skills        String?
+  status        String   @default("available")
+  is_active     Boolean  @default(true)
+  user_id       Int?     @unique
+  created_at    DateTime @default(now())
+  updated_at    DateTime @updatedAt
+
+  user          User?    @relation(fields: [user_id], references: [id])
+  service_calls ServiceCall[]
+
+  @@map("engineers")
+}
+
+model ServiceCall {
+  id                   Int      @id @default(autoincrement())
+  call_number          String   @unique
+  date                 String
+  time                 String
+  customer_id          Int
+  engineer_id          Int?
+  complaint_description String
+  device_type          String?
+  brand                String?
+  model_name           String?
+  serial_number        String?
+  warranty_status      String?
+  invoice_number       String?
+  call_source          String?
+  priority             String   @default("medium")
+  status               String   @default("open")
+  material_location    String?
+  work_performed       String?
+  remarks              String?
+  follow_up_date       String?
+  completion_date      String?
+  created_by           Int
+  updated_by           Int?
+  created_at           DateTime @default(now())
+  updated_at           DateTime @updatedAt
+
+  customer             Customer @relation(fields: [customer_id], references: [id])
+  engineer             Engineer? @relation(fields: [engineer_id], references: [id])
+  creator              User     @relation("CallCreatedBy", fields: [created_by], references: [id])
+  updater              User?    @relation("CallUpdatedBy", fields: [updated_by], references: [id])
+  history              CallHistory[]
+  attachments          CallAttachment[]
+  follow_ups           FollowUp[]
+
+  @@map("service_calls")
+}
+
+model CallHistory {
+  id         Int      @id @default(autoincrement())
+  call_id    Int
+  changed_by Int
+  old_status String?
+  new_status String?
+  action     String?
+  notes      String?
+  created_at DateTime @default(now())
+
+  call       ServiceCall @relation(fields: [call_id], references: [id])
+  user       User        @relation("HistoryChangedBy", fields: [changed_by], references: [id])
+
+  @@map("call_history")
+}
+
+model CallAttachment {
+  id          Int      @id @default(autoincrement())
+  call_id     Int
+  file_type   String
+  file_path   String
+  file_name   String
+  file_size   Int?
+  uploaded_by Int
+  created_at  DateTime @default(now())
+
+  call        ServiceCall @relation(fields: [call_id], references: [id])
+  uploader    User        @relation("AttachmentUploadedBy", fields: [uploaded_by], references: [id])
+
+  @@map("call_attachments")
+}
+
+model FollowUp {
+  id             Int      @id @default(autoincrement())
+  call_id        Int
+  scheduled_date String
+  notes          String?
+  status         String   @default("pending")
+  completed_by   Int?
+  created_by     Int
+  created_at     DateTime @default(now())
+  updated_at     DateTime @updatedAt
+
+  call           ServiceCall @relation(fields: [call_id], references: [id])
+  completer      User?       @relation("FollowUpCompletedBy", fields: [completed_by], references: [id])
+  creator        User        @relation("FollowUpCreatedBy", fields: [created_by], references: [id])
+
+  @@map("follow_ups")
+}
+
+model Notification {
+  id         Int      @id @default(autoincrement())
+  user_id    Int?
+  title      String
+  message    String
+  type       String   @default("info")
+  is_read    Boolean  @default(false)
+  created_at DateTime @default(now())
+
+  user       User?    @relation(fields: [user_id], references: [id])
+
+  @@map("notifications")
+}
+
+model Setting {
+  id         Int      @id @default(autoincrement())
+  key        String   @unique
+  value      String
+  updated_at DateTime @updatedAt
+
+  @@map("settings")
+}
+
+model AuditLog {
+  id          Int      @id @default(autoincrement())
+  user_id     Int?
+  action      String
+  entity_type String?
+  entity_id   Int?
+  old_values  String?
+  new_values  String?
+  description String?
+  created_at  DateTime @default(now())
+
+  user        User?    @relation(fields: [user_id], references: [id])
+
+  @@map("audit_logs")
+}
+
+model BackupHistory {
+  id          Int      @id @default(autoincrement())
+  file_path   String
+  file_size   Int?
+  status      String   @default("success")
+  created_by  Int?
+  created_at  DateTime @default(now())
+
+  creator     User?    @relation("BackupCreatedBy", fields: [created_by], references: [id])
+
+  @@map("backup_history")
+}
