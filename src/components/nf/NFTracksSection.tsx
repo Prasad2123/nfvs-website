@@ -1,5 +1,5 @@
-import React from 'react';
-import { GraduationCap, Award, UserCheck, CheckCircle2, ArrowUpRight, Sparkles, Terminal, Code2, Rocket } from 'lucide-react';
+import React, { useState } from 'react';
+import { GraduationCap, Award, UserCheck, CheckCircle2, ArrowUpRight, Sparkles, Rocket, Zap, BarChart3 } from 'lucide-react';
 
 interface NFTracksSectionProps {
   onOpenApplication: (track: string) => void;
@@ -10,6 +10,8 @@ export const NFTracksSection: React.FC<NFTracksSectionProps> = ({
   onOpenApplication,
   isDark = true,
 }) => {
+  const [hoveredTrack, setHoveredTrack] = useState<string | null>(null);
+
   const tracks = [
     {
       id: 'student',
@@ -19,6 +21,8 @@ export const NFTracksSection: React.FC<NFTracksSectionProps> = ({
       icon: GraduationCap,
       avatarBg: 'from-[#f59e0b] to-[#ea580c]',
       borderGlow: 'hover:border-amber-400/80',
+      activeBorder: 'border-amber-400/80',
+      glowColor: 'rgba(245,158,11,0.15)',
       bullets: [
         'E-Cells revitalisation & calendarised hackathons / bootcamps',
         '3–6 month structured pre-incubation cohorts',
@@ -29,6 +33,8 @@ export const NFTracksSection: React.FC<NFTracksSectionProps> = ({
       highlight: 'From College Idea to Scalable Startup',
       badgeText: 'UG/PG_COHORTS',
       ctaText: 'Apply as Student Innovator',
+      stat: '250+',
+      statLabel: 'Students Engaged',
     },
     {
       id: 'faculty',
@@ -38,6 +44,8 @@ export const NFTracksSection: React.FC<NFTracksSectionProps> = ({
       icon: Award,
       avatarBg: 'from-[#0284c7] to-[#0369a1]',
       borderGlow: 'hover:border-sky-400/80',
+      activeBorder: 'border-sky-400/80',
+      glowColor: 'rgba(56,189,248,0.15)',
       bullets: [
         'Research-to-venture roadmaps & deep-tech commercialisation',
         'AICTE-NISP compliant institutional IP & equity-sharing policy',
@@ -48,6 +56,8 @@ export const NFTracksSection: React.FC<NFTracksSectionProps> = ({
       highlight: 'Commercialise Deep-Tech Patents & Research',
       badgeText: 'RESEARCH_TO_VENTURE',
       ctaText: 'Commercialize Faculty Research',
+      stat: '10–20+',
+      statLabel: 'IP Filings / Year',
     },
     {
       id: 'external',
@@ -57,6 +67,8 @@ export const NFTracksSection: React.FC<NFTracksSectionProps> = ({
       icon: UserCheck,
       avatarBg: 'from-[#6366f1] to-[#4338ca]',
       borderGlow: 'hover:border-indigo-400/80',
+      activeBorder: 'border-indigo-400/80',
+      glowColor: 'rgba(99,102,241,0.15)',
       bullets: [
         'Dedicated physical (500–2,000+ sq. ft.) & virtual co-working zones',
         'Dev-for-Equity & rapid MVP engineering sprints',
@@ -67,6 +79,8 @@ export const NFTracksSection: React.FC<NFTracksSectionProps> = ({
       highlight: 'Grassroots & Alumni to Investable Enterprises',
       badgeText: 'DEV_FOR_EQUITY',
       ctaText: 'Join as Solo Founder',
+      stat: '₹3Cr+',
+      statLabel: 'Grant Pipeline',
     },
   ];
 
@@ -78,9 +92,9 @@ export const NFTracksSection: React.FC<NFTracksSectionProps> = ({
       }`}
     >
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
-        
+
         {/* Section Header Pill */}
-        <div className="flex justify-center mb-12">
+        <div className="flex justify-center mb-12 reveal">
           <div
             className={`inline-flex items-center gap-3 px-8 py-3 rounded-full shadow-2xl border-2 backdrop-blur-md ${
               isDark
@@ -103,35 +117,57 @@ export const NFTracksSection: React.FC<NFTracksSectionProps> = ({
         </div>
 
         {/* 3 High-Tech Track Cards */}
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-6 lg:gap-8 items-stretch">
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-6 lg:gap-8 items-stretch reveal-stagger">
           {tracks.map((track) => {
             const Icon = track.icon;
+            const isHovered = hoveredTrack === track.id;
             return (
               <div
                 key={track.id}
-                className={`group relative flex flex-col justify-between glass-card rounded-2xl border ${track.borderGlow} shadow-xl hover:shadow-2xl transition-all duration-300 overflow-hidden glass-card-hover ${
+                onMouseEnter={() => setHoveredTrack(track.id)}
+                onMouseLeave={() => setHoveredTrack(null)}
+                className={`group relative flex flex-col justify-between glass-card rounded-2xl border shadow-xl hover:shadow-2xl transition-all duration-300 overflow-hidden glass-card-hover ${track.borderGlow} ${
                   isDark ? 'border-sky-500/30' : 'border-slate-200 bg-white'
                 }`}
+                style={{
+                  boxShadow: isHovered
+                    ? `0 20px 40px -10px ${track.glowColor}, 0 0 30px ${track.glowColor}`
+                    : undefined,
+                }}
               >
                 {/* Top Glowing Laser Accent */}
-                <div className="h-1.5 w-full bg-gradient-to-r from-[#f59e0b] via-[#38bdf8] to-[#0284c7]" />
+                <div className="h-1.5 w-full bg-gradient-to-r from-[#f59e0b] via-[#38bdf8] to-[#0284c7] animate-border-beam" />
+
+                {/* Stat badge top-right */}
+                <div className={`absolute top-5 right-5 text-right ${isHovered ? 'animate-scale-in' : ''}`}>
+                  <div className={`text-lg font-black font-mono stat-number ${
+                    isDark ? 'text-amber-400' : 'text-amber-600'
+                  }`}>
+                    {track.stat}
+                  </div>
+                  <div className={`text-[9px] font-mono font-bold uppercase ${
+                    isDark ? 'text-slate-400' : 'text-slate-500'
+                  }`}>
+                    {track.statLabel}
+                  </div>
+                </div>
 
                 <div className="p-6 sm:p-7 flex-1 flex flex-col">
-                  
+
                   {/* Header Row: Track Number & Icon */}
-                  <div className="flex items-start justify-between gap-4 mb-4">
+                  <div className="flex items-start gap-4 mb-4">
                     <div
-                      className={`w-14 h-14 rounded-2xl flex items-center justify-center flex-shrink-0 shadow-lg bg-gradient-to-br ${track.avatarBg} text-white transition-transform group-hover:scale-105 border border-white/20`}
+                      className={`w-14 h-14 rounded-2xl flex items-center justify-center flex-shrink-0 shadow-lg bg-gradient-to-br ${track.avatarBg} text-white transition-all group-hover:scale-110 group-hover:rotate-3 border border-white/20`}
                     >
                       <Icon className="w-7 h-7" />
                     </div>
 
-                    <div className="text-right">
+                    <div>
                       <span
                         className={`text-2xl font-black font-mono transition-colors ${
                           isDark
-                            ? 'text-slate-400 group-hover:text-amber-400'
-                            : 'text-slate-300 group-hover:text-amber-600'
+                            ? 'text-slate-600 group-hover:text-sky-400'
+                            : 'text-slate-300 group-hover:text-[#0284c7]'
                         }`}
                       >
                         #{track.number}
@@ -159,7 +195,7 @@ export const NFTracksSection: React.FC<NFTracksSectionProps> = ({
                     >
                       {track.title}
                     </h3>
-                    
+
                     <div
                       className={`mt-2 p-2 rounded-lg border ${
                         isDark ? 'bg-slate-900/60 border-slate-700/80' : 'bg-slate-50 border-slate-200'
@@ -180,12 +216,13 @@ export const NFTracksSection: React.FC<NFTracksSectionProps> = ({
                     {track.bullets.map((bullet, idx) => (
                       <div
                         key={idx}
-                        className={`flex items-start gap-2.5 text-xs sm:text-sm font-medium leading-relaxed ${
+                        className={`flex items-start gap-2.5 text-xs sm:text-sm font-medium leading-relaxed transition-all ${
                           isDark ? 'text-slate-200' : 'text-slate-700'
                         }`}
+                        style={{ transitionDelay: `${idx * 40}ms` }}
                       >
                         <div
-                          className={`w-4 h-4 rounded-full border flex items-center justify-center flex-shrink-0 mt-0.5 ${
+                          className={`w-4 h-4 rounded-full border flex items-center justify-center flex-shrink-0 mt-0.5 transition-all group-hover:scale-110 ${
                             isDark
                               ? 'bg-amber-400/20 border-amber-400/50'
                               : 'bg-amber-100 border-amber-300'
@@ -209,8 +246,10 @@ export const NFTracksSection: React.FC<NFTracksSectionProps> = ({
                       {track.highlight}
                     </span>
                     <span
-                      className={`text-[10px] font-mono font-bold uppercase ${
-                        isDark ? 'text-emerald-400' : 'text-emerald-700'
+                      className={`text-[10px] font-mono font-bold uppercase px-1.5 py-0.5 rounded border ${
+                        isDark
+                          ? 'text-emerald-400 bg-emerald-950/60 border-emerald-500/30'
+                          : 'text-emerald-700 bg-emerald-50 border-emerald-200'
                       }`}
                     >
                       ACTIVE
@@ -222,7 +261,7 @@ export const NFTracksSection: React.FC<NFTracksSectionProps> = ({
                 <div className={`p-4 border-t ${isDark ? 'bg-slate-950/70 border-slate-800' : 'bg-slate-50 border-slate-200'}`}>
                   <button
                     onClick={() => onOpenApplication(track.id)}
-                    className="w-full py-2.5 px-4 rounded-xl text-xs font-black uppercase tracking-wider text-white bg-gradient-to-r from-[#0284c7] to-[#081c3b] hover:from-[#0ea5e9] hover:to-[#0284c7] border border-sky-400/40 hover:border-amber-400/60 transition-all flex items-center justify-center gap-2 shadow-md group/btn cursor-pointer"
+                    className="w-full py-2.5 px-4 rounded-xl text-xs font-black uppercase tracking-wider text-white bg-gradient-to-r from-[#0284c7] to-[#081c3b] hover:from-[#0ea5e9] hover:to-[#0284c7] border border-sky-400/40 hover:border-amber-400/60 transition-all flex items-center justify-center gap-2 shadow-md group/btn cursor-pointer btn-neon-blue"
                   >
                     <span>{track.ctaText}</span>
                     <ArrowUpRight className="w-4 h-4 text-amber-300 group-hover/btn:translate-x-0.5 group-hover/btn:-translate-y-0.5 transition-transform" />

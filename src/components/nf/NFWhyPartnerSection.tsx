@@ -103,7 +103,7 @@ export const NFWhyPartnerSection: React.FC<NFWhyPartnerSectionProps> = ({
         
         {/* Section 1: Why Partner With NCF Top Header & Cards */}
         <div>
-          <div className="flex justify-center mb-10">
+          <div className="flex justify-center mb-10 reveal">
             <div
               className={`inline-flex items-center gap-3 px-8 py-3 rounded-full shadow-2xl border-2 backdrop-blur-md ${
                 isDark
@@ -115,7 +115,7 @@ export const NFWhyPartnerSection: React.FC<NFWhyPartnerSectionProps> = ({
               <h2
                 className={`text-sm sm:text-base md:text-lg font-mono font-black tracking-widest uppercase text-center ${
                   isDark
-                    ? 'text-transparent bg-clip-text bg-gradient-to-r from-sky-200 to-amber-300'
+                    ? 'text-transparent bg-clip-text bg-gradient-to-r from-sky-200 to-amber-300 animate-gradient-text'
                     : 'text-[#081c3b]'
                 }`}
               >
@@ -125,7 +125,7 @@ export const NFWhyPartnerSection: React.FC<NFWhyPartnerSectionProps> = ({
             </div>
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-6 lg:gap-8 items-stretch">
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-6 lg:gap-8 items-stretch reveal-stagger">
             {reasons.map((item, idx) => {
               const Icon = item.icon;
               return (
@@ -346,11 +346,11 @@ export const NFWhyPartnerSection: React.FC<NFWhyPartnerSectionProps> = ({
             </span>
           </div>
 
-          <div className="grid grid-cols-2 sm:grid-cols-4 gap-3 sm:gap-4 pt-6">
-            <div className={`p-4 rounded-2xl border text-center ${
+          <div className="grid grid-cols-2 sm:grid-cols-4 gap-3 sm:gap-4 pt-6 reveal-stagger">
+            <div className={`p-4 rounded-2xl border text-center tilt-card transition-all hover:border-sky-400 ${
               isDark ? 'bg-slate-950/80 border-sky-500/30' : 'bg-white border-slate-200 shadow-xs'
             }`}>
-              <div className={`text-2xl sm:text-3xl font-mono font-black ${isDark ? 'text-white' : 'text-[#081c3b]'}`}>
+              <div data-count="250" data-suffix="+" className={`text-2xl sm:text-3xl font-mono font-black stat-number ${isDark ? 'text-white' : 'text-[#081c3b]'}`}>
                 250+
               </div>
               <div className={`text-xs font-bold mt-1 uppercase ${isDark ? 'text-sky-300' : 'text-[#0284c7]'}`}>
@@ -361,10 +361,10 @@ export const NFWhyPartnerSection: React.FC<NFWhyPartnerSectionProps> = ({
               </div>
             </div>
 
-            <div className={`p-4 rounded-2xl border text-center ${
+            <div className={`p-4 rounded-2xl border text-center tilt-card transition-all hover:border-amber-400 ${
               isDark ? 'bg-slate-950/80 border-amber-500/30' : 'bg-white border-slate-200 shadow-xs'
             }`}>
-              <div className={`text-2xl sm:text-3xl font-mono font-black ${isDark ? 'text-amber-400' : 'text-amber-600'}`}>
+              <div data-count="15" data-suffix="–25" className={`text-2xl sm:text-3xl font-mono font-black stat-number ${isDark ? 'text-amber-400' : 'text-amber-600'}`}>
                 15–25
               </div>
               <div className={`text-xs font-bold mt-1 uppercase ${isDark ? 'text-amber-300' : 'text-amber-800'}`}>
@@ -375,10 +375,10 @@ export const NFWhyPartnerSection: React.FC<NFWhyPartnerSectionProps> = ({
               </div>
             </div>
 
-            <div className={`p-4 rounded-2xl border text-center ${
+            <div className={`p-4 rounded-2xl border text-center tilt-card transition-all hover:border-emerald-400 ${
               isDark ? 'bg-slate-950/80 border-emerald-500/30' : 'bg-white border-slate-200 shadow-xs'
             }`}>
-              <div className={`text-2xl sm:text-3xl font-mono font-black ${isDark ? 'text-emerald-400' : 'text-emerald-600'}`}>
+              <div data-count="5" data-suffix="–10" className={`text-2xl sm:text-3xl font-mono font-black stat-number ${isDark ? 'text-emerald-400' : 'text-emerald-600'}`}>
                 5–10
               </div>
               <div className={`text-xs font-bold mt-1 uppercase ${isDark ? 'text-emerald-300' : 'text-emerald-800'}`}>
@@ -389,10 +389,10 @@ export const NFWhyPartnerSection: React.FC<NFWhyPartnerSectionProps> = ({
               </div>
             </div>
 
-            <div className={`p-4 rounded-2xl border text-center ${
+            <div className={`p-4 rounded-2xl border text-center tilt-card transition-all hover:border-cyan-400 ${
               isDark ? 'bg-slate-950/80 border-cyan-500/30' : 'bg-white border-slate-200 shadow-xs'
             }`}>
-              <div className={`text-2xl sm:text-3xl font-mono font-black ${isDark ? 'text-cyan-400' : 'text-cyan-600'}`}>
+              <div data-count="10" data-suffix="–20+" className={`text-2xl sm:text-3xl font-mono font-black stat-number ${isDark ? 'text-cyan-400' : 'text-cyan-600'}`}>
                 10–20+
               </div>
               <div className={`text-xs font-bold mt-1 uppercase ${isDark ? 'text-cyan-300' : 'text-cyan-800'}`}>
@@ -403,10 +403,10 @@ export const NFWhyPartnerSection: React.FC<NFWhyPartnerSectionProps> = ({
               </div>
             </div>
 
-            <div className={`p-4 rounded-2xl border text-center ${
+            <div className={`p-4 rounded-2xl border text-center tilt-card transition-all hover:border-indigo-400 ${
               isDark ? 'bg-slate-950/80 border-indigo-500/30' : 'bg-white border-slate-200 shadow-xs'
             }`}>
-              <div className={`text-2xl sm:text-3xl font-mono font-black ${isDark ? 'text-indigo-400' : 'text-indigo-600'}`}>
+              <div data-count="16" data-suffix="+" className={`text-2xl sm:text-3xl font-mono font-black stat-number ${isDark ? 'text-indigo-400' : 'text-indigo-600'}`}>
                 16+
               </div>
               <div className={`text-xs font-bold mt-1 uppercase ${isDark ? 'text-indigo-300' : 'text-indigo-800'}`}>
@@ -417,10 +417,10 @@ export const NFWhyPartnerSection: React.FC<NFWhyPartnerSectionProps> = ({
               </div>
             </div>
 
-            <div className={`p-4 rounded-2xl border text-center ${
+            <div className={`p-4 rounded-2xl border text-center tilt-card transition-all hover:border-amber-400 ${
               isDark ? 'bg-slate-950/80 border-amber-500/30' : 'bg-white border-slate-200 shadow-xs'
             }`}>
-              <div className={`text-2xl sm:text-3xl font-mono font-black ${isDark ? 'text-amber-400' : 'text-amber-600'}`}>
+              <div className={`text-2xl sm:text-3xl font-mono font-black stat-number ${isDark ? 'text-amber-400' : 'text-amber-600'}`}>
                 ₹3Cr+
               </div>
               <div className={`text-xs font-bold mt-1 uppercase ${isDark ? 'text-amber-300' : 'text-amber-800'}`}>
@@ -431,10 +431,10 @@ export const NFWhyPartnerSection: React.FC<NFWhyPartnerSectionProps> = ({
               </div>
             </div>
 
-            <div className={`p-4 rounded-2xl border text-center ${
+            <div className={`p-4 rounded-2xl border text-center tilt-card transition-all hover:border-sky-400 ${
               isDark ? 'bg-slate-950/80 border-sky-500/30' : 'bg-white border-slate-200 shadow-xs'
             }`}>
-              <div className={`text-2xl sm:text-3xl font-mono font-black ${isDark ? 'text-sky-400' : 'text-[#0284c7]'}`}>
+              <div data-count="100" data-suffix="+" className={`text-2xl sm:text-3xl font-mono font-black stat-number ${isDark ? 'text-sky-400' : 'text-[#0284c7]'}`}>
                 100+
               </div>
               <div className={`text-xs font-bold mt-1 uppercase ${isDark ? 'text-sky-300' : 'text-[#0284c7]'}`}>
@@ -445,10 +445,10 @@ export const NFWhyPartnerSection: React.FC<NFWhyPartnerSectionProps> = ({
               </div>
             </div>
 
-            <div className={`p-4 rounded-2xl border text-center ${
+            <div className={`p-4 rounded-2xl border text-center tilt-card transition-all hover:border-emerald-400 ${
               isDark ? 'bg-slate-950/80 border-emerald-500/30' : 'bg-white border-slate-200 shadow-xs'
             }`}>
-              <div className={`text-2xl sm:text-3xl font-mono font-black ${isDark ? 'text-emerald-400' : 'text-emerald-600'}`}>
+              <div className={`text-2xl sm:text-3xl font-mono font-black stat-number ${isDark ? 'text-emerald-400' : 'text-emerald-600'}`}>
                 12 Mo
               </div>
               <div className={`text-xs font-bold mt-1 uppercase ${isDark ? 'text-emerald-300' : 'text-emerald-800'}`}>

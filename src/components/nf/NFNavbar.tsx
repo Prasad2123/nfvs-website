@@ -15,6 +15,7 @@ export const NFNavbar: React.FC<NFNavbarProps> = ({
 }) => {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
+  const [activeSection, setActiveSection] = useState<string>('');
   const isDark = theme === 'dark';
 
   useEffect(() => {
@@ -23,6 +24,29 @@ export const NFNavbar: React.FC<NFNavbarProps> = ({
     };
     window.addEventListener('scroll', handleScroll);
     return () => window.removeEventListener('scroll', handleScroll);
+  }, []);
+
+  // Scroll-spy: detect which section is active
+  useEffect(() => {
+    const sections = ['tracks', 'support', 'architecture', 'process', 'why-ncf', 'contact'];
+    const observers: IntersectionObserver[] = [];
+
+    sections.forEach((id) => {
+      const el = document.getElementById(id);
+      if (!el) return;
+      const obs = new IntersectionObserver(
+        ([entry]) => {
+          if (entry.isIntersecting) {
+            setActiveSection(id);
+          }
+        },
+        { threshold: 0.25, rootMargin: '-60px 0px -40% 0px' }
+      );
+      obs.observe(el);
+      observers.push(obs);
+    });
+
+    return () => observers.forEach((o) => o.disconnect());
   }, []);
 
   const navButtons = [
@@ -43,14 +67,14 @@ export const NFNavbar: React.FC<NFNavbarProps> = ({
 
   return (
     <header
-      className={`sticky top-0 z-50 w-full transition-all duration-300 ${
+      className={`fixed top-0 left-0 right-0 z-50 w-full transition-all duration-300 ${
         isDark
           ? scrolled
             ? 'bg-[#060f1e]/98 backdrop-blur-xl border-b border-sky-500/20 shadow-2xl shadow-sky-950/60 py-2 sm:py-2.5'
-            : 'bg-[#060f1e]/90 backdrop-blur-md border-b border-slate-800 py-2.5 sm:py-3.5'
+            : 'bg-[#060f1e]/95 backdrop-blur-lg border-b border-slate-800/80 py-2.5 sm:py-3.5'
           : scrolled
-            ? 'bg-white/98 backdrop-blur-xl border-b border-slate-200 shadow-md py-2 sm:py-2.5'
-            : 'bg-white/90 backdrop-blur-md border-b border-slate-200/80 py-2.5 sm:py-3.5'
+            ? 'bg-white/98 backdrop-blur-xl border-b border-slate-200 shadow-lg py-2 sm:py-2.5'
+            : 'bg-white/95 backdrop-blur-lg border-b border-slate-200/80 py-2.5 sm:py-3.5'
       }`}
     >
       {/* Animated Top Laser Beam Line */}
@@ -72,6 +96,8 @@ export const NFNavbar: React.FC<NFNavbarProps> = ({
           <nav className="hidden lg:flex items-center justify-center gap-1 xl:gap-1.5 2xl:gap-2 flex-1 mx-2 xl:mx-4">
             {navButtons.map((item) => {
               const Icon = item.icon;
+              const sectionId = item.href.replace('#', '');
+              const isActive = activeSection === sectionId;
               return (
                 <button
                   type="button"
@@ -79,12 +105,16 @@ export const NFNavbar: React.FC<NFNavbarProps> = ({
                   onClick={() => handleNavClick(item.href)}
                   title={item.tooltip}
                   className={`h-8.5 xl:h-9 px-2 lg:px-2.5 xl:px-3 2xl:px-3.5 rounded-xl text-[10.5px] lg:text-[11px] xl:text-xs font-bold uppercase tracking-wider transition-all duration-200 inline-flex items-center gap-1 xl:gap-1.5 shadow-xs border hover:scale-105 active:scale-95 cursor-pointer whitespace-nowrap flex-shrink-0 ${
-                    isDark
-                      ? 'bg-[#0d2247]/80 text-slate-200 border-sky-500/25 hover:border-amber-400 hover:text-white hover:bg-sky-500/20 hover:shadow-sky-500/10'
-                      : 'bg-slate-100 text-slate-700 border-slate-200 hover:border-[#0284c7] hover:text-[#0284c7] hover:bg-sky-50'
+                    isActive
+                      ? isDark
+                        ? 'bg-gradient-to-br from-sky-500/20 to-amber-500/15 border-sky-400/50 text-white shadow-sky-500/20'
+                        : 'bg-gradient-to-br from-sky-100 to-amber-50 border-sky-400 text-[#0369a1] shadow-sky-200/60'
+                      : isDark
+                        ? 'bg-[#0d2247]/80 text-slate-200 border-sky-500/25 hover:border-amber-400 hover:text-white hover:bg-sky-500/20 hover:shadow-sky-500/10'
+                        : 'bg-slate-100 text-slate-700 border-slate-200 hover:border-[#0284c7] hover:text-[#0284c7] hover:bg-sky-50'
                   }`}
                 >
-                  <Icon className={`w-3 h-3 xl:w-3.5 xl:h-3.5 flex-shrink-0 ${isDark ? 'text-amber-400' : 'text-[#0284c7]'}`} />
+                  <Icon className={`w-3 h-3 xl:w-3.5 xl:h-3.5 flex-shrink-0 ${isActive ? 'text-amber-400' : isDark ? 'text-amber-400' : 'text-[#0284c7]'}`} />
                   <span>{item.name}</span>
                 </button>
               );

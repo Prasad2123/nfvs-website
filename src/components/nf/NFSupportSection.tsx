@@ -22,7 +22,7 @@ export const NFSupportSection: React.FC<NFSupportSectionProps> = ({
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
         
         {/* Section Header Pill */}
-        <div className="flex justify-center mb-12">
+        <div className="flex justify-center mb-12 reveal">
           <div
             className={`inline-flex items-center gap-3 px-8 py-3 rounded-full shadow-2xl border-2 backdrop-blur-md ${
               isDark
@@ -34,7 +34,7 @@ export const NFSupportSection: React.FC<NFSupportSectionProps> = ({
             <h2
               className={`text-sm sm:text-base md:text-lg font-mono font-black tracking-widest uppercase text-center ${
                 isDark
-                  ? 'text-transparent bg-clip-text bg-gradient-to-r from-sky-200 to-amber-300'
+                  ? 'text-transparent bg-clip-text bg-gradient-to-r from-sky-200 to-amber-300 animate-gradient-text'
                   : 'text-[#081c3b]'
               }`}
             >
@@ -45,11 +45,11 @@ export const NFSupportSection: React.FC<NFSupportSectionProps> = ({
         </div>
 
         {/* 3 Pillars Grid */}
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-6 lg:gap-8 items-stretch">
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-6 lg:gap-8 items-stretch reveal-stagger">
           
           {/* Card 1: IPR & Technology Transfer Engine */}
           <div
-            className={`relative flex flex-col justify-between glass-card rounded-2xl border hover:border-sky-400 shadow-xl transition-all duration-300 overflow-hidden glass-card-hover ${
+            className={`relative flex flex-col justify-between glass-card rounded-2xl border hover:border-sky-400 shadow-xl transition-all duration-300 overflow-hidden glass-card-hover tilt-card ${
               isDark ? 'border-sky-500/30' : 'border-slate-200 bg-white'
             }`}
           >
@@ -140,7 +140,7 @@ export const NFSupportSection: React.FC<NFSupportSectionProps> = ({
 
           {/* Card 2: High-Tech Prototyping Infrastructure */}
           <div
-            className={`relative flex flex-col justify-between glass-card-gold rounded-2xl border hover:border-amber-400 shadow-xl transition-all duration-300 overflow-hidden glass-card-hover ${
+            className={`relative flex flex-col justify-between glass-card-gold rounded-2xl border hover:border-amber-400 shadow-xl transition-all duration-300 overflow-hidden glass-card-hover tilt-card ${
               isDark ? 'border-amber-500/30' : 'border-amber-200 bg-amber-50/30'
             }`}
           >
@@ -296,7 +296,7 @@ export const NFSupportSection: React.FC<NFSupportSectionProps> = ({
 
           {/* Card 3: Grant Engineering & Investor Engagement */}
           <div
-            className={`relative flex flex-col justify-between glass-card rounded-2xl border hover:border-emerald-400 shadow-xl transition-all duration-300 overflow-hidden glass-card-hover ${
+            className={`relative flex flex-col justify-between glass-card rounded-2xl border hover:border-emerald-400 shadow-xl transition-all duration-300 overflow-hidden glass-card-hover tilt-card ${
               isDark ? 'border-sky-500/30' : 'border-slate-200 bg-white'
             }`}
           >
