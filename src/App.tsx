@@ -1,10 +1,9 @@
 import React, { useEffect } from 'react';
-import { Routes, Route, Navigate } from 'react-router-dom';
+import { Routes, Route } from 'react-router-dom';
 import { AppLayout } from './components/layout/AppLayout';
 import { LoginPage } from './pages/auth/LoginPage';
 import { DashboardPage } from './pages/dashboard/DashboardPage';
 import { NotFoundPage } from './pages/NotFoundPage';
-import { ComingSoonPage } from './pages/ComingSoonPage';
 import { ProtectedRoute } from './components/common/ProtectedRoute';
 import { Toaster } from './components/ui/toaster';
 import { useAuthStore } from './stores/authStore';
@@ -21,6 +20,10 @@ import EngineerDetailPage from './pages/engineers/EngineerDetailPage';
 
 // Service Call pages
 import ServiceCallListPage from './pages/service-calls/ServiceCallListPage';
+import ServiceCallFormPage from './pages/service-calls/ServiceCallFormPage';
+import ServiceCallDetailPage from './pages/service-calls/ServiceCallDetailPage';
+
+import { NFVentureStudioPage } from './pages/NFVentureStudioPage';
 
 // Settings, Backup, Users, Calendar, Reports
 import SettingsPage from './pages/settings/SettingsPage';
@@ -29,20 +32,6 @@ import UserListPage from './pages/users/UserListPage';
 import UserFormPage from './pages/users/UserFormPage';
 import CalendarPage from './pages/CalendarPage';
 import ReportsPage from './pages/ReportsPage';
-
-// Lazy load service call form and detail if they exist
-let ServiceCallFormPage: React.ComponentType<any> = () => <ComingSoonPage moduleName="Service Call Form" />;
-let ServiceCallDetailPage: React.ComponentType<any> = () => <ComingSoonPage moduleName="Service Call Detail" />;
-
-try {
-  // Will be replaced once subagent 2 finishes
-  const formMod = require('./pages/service-calls/ServiceCallFormPage');
-  ServiceCallFormPage = formMod.default || formMod;
-  const detailMod = require('./pages/service-calls/ServiceCallDetailPage');
-  ServiceCallDetailPage = detailMod.default || detailMod;
-} catch { /* not built yet */ }
-
-import { NFVentureStudioPage } from './pages/NFVentureStudioPage';
 
 function App() {
   const initialize = useAuthStore((s) => s.initialize);

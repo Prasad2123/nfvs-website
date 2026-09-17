@@ -6,6 +6,8 @@ import { setupIpcHandlers } from './ipc/handlers';
 
 const isDev = process.env.NODE_ENV === 'development';
 
+app.disableHardwareAcceleration();
+
 if (!isDev) {
   process.env.DATABASE_URL = `file:${path.join(app.getPath('userData'), 'hardware-service-pro.db')}`;
 }
@@ -13,6 +15,7 @@ if (!isDev) {
 let mainWindow: BrowserWindow | null = null;
 
 async function createWindow() {
+  if (isDev) console.log('[main] creating browser window');
   mainWindow = new BrowserWindow({
     width: 1400,
     height: 900,
@@ -29,8 +32,9 @@ async function createWindow() {
   setupIpcHandlers(mainWindow);
 
   if (isDev) {
+    console.log('[main] loading dev url');
     await mainWindow.loadURL('http://localhost:5173');
-    mainWindow.webContents.openDevTools();
+    console.log('[main] dev url loaded');
   } else {
     await mainWindow.loadFile(path.join(__dirname, '../../dist/index.html'));
   }
@@ -46,9 +50,11 @@ async function createWindow() {
 
 app.whenReady().then(async () => {
   try {
+    if (isDev) console.log('[main] starting backend');
     if (typeof startBackendServer === 'function') {
       await startBackendServer();
     }
+    if (isDev) console.log('[main] backend started');
   } catch (error) {
     console.error('Failed to start backend server:', error);
   }
