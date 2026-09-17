@@ -25,7 +25,7 @@ export const NFArchitectureAndProcess: React.FC<NFArchitectureAndProcessProps> =
     {
       id: 1,
       label: 'STAGE I – ASSESS',
-      subtitle: 'MoU & Comprehensive Capability Audit',
+      subtitle: 'MoU & Capability Audit',
       month: 'M1',
       tag: 'MoU & Audit',
       badge: 'Month 1',
@@ -36,17 +36,17 @@ export const NFArchitectureAndProcess: React.FC<NFArchitectureAndProcessProps> =
       titleColor: isDark ? 'text-sky-300' : 'text-[#0284c7]',
       barColor: '#38bdf8',
       Icon: ClipboardCheck,
-      desc: 'Capability audit of research labs, student projects, faculty patents and E-Cell activity; baseline scoring against NBA/NAAC/NIRF metrics; bilateral institutional MoU signing.',
+      desc: 'Capability audit of labs, student projects, patents & E-Cell baseline.',
       deliverables: [
-        'Lab, infrastructure & ongoing IP audit',
-        'NBA / NAAC Criterion 3 baseline score card',
-        'Bilateral institutional co-execution MoU',
+        'Lab & IP capability audit',
+        'NBA/NAAC Criterion 3 baseline',
+        'Institutional co-execution MoU',
       ],
     },
     {
       id: 2,
       label: 'STAGE II – GOVERN',
-      subtitle: 'Board Constitution & IP Policy Ratification',
+      subtitle: 'Board & IP Policy Ratification',
       month: 'M2',
       tag: 'Board & IP',
       badge: 'Month 2',
@@ -57,17 +57,17 @@ export const NFArchitectureAndProcess: React.FC<NFArchitectureAndProcessProps> =
       titleColor: isDark ? 'text-amber-300' : 'text-amber-800',
       barColor: '#f59e0b',
       Icon: Network,
-      desc: 'Constitution of Institutional Incubation Board (leadership + faculty + industry CXOs + NFVS) and ratification of an AICTE-NISP-compliant IP & equity-sharing policy.',
+      desc: 'Incubation Board constitution & AICTE-NISP IP policy ratification.',
       deliverables: [
-        'Constitution of Institutional Incubation Board',
-        'AICTE-NISP compliant IP & equity policy',
-        'Designated Faculty SPOC & E-Cell governance',
+        'Institutional Incubation Board',
+        'AICTE-NISP IP policy ratified',
+        'Faculty SPOC & E-Cell governance',
       ],
     },
     {
       id: 3,
       label: 'STAGE III – BUILD',
-      subtitle: 'Physical Space & Digital Incubation ERP',
+      subtitle: 'Space Setup & Digital ERP',
       month: 'M3-4',
       tag: 'Space & ERP',
       badge: 'Months 3–4',
@@ -78,17 +78,17 @@ export const NFArchitectureAndProcess: React.FC<NFArchitectureAndProcessProps> =
       titleColor: isDark ? 'text-sky-300' : 'text-[#0284c7]',
       barColor: '#0ea5e9',
       Icon: Cpu,
-      desc: 'Optimisation of 500–2,000+ sq. ft. of co-working/prototyping space; turnkey deployment of Digital Incubation ERP for activity tracking; release of annual IIC/workshop calendar.',
+      desc: 'Prototyping space setup & Digital Incubation ERP portal deployment.',
       deliverables: [
-        '500–2,000+ sq. ft. innovation space setup',
-        'Digital Incubation ERP tracking portal deployed',
-        'Annual MIC/IIC master workshop calendar',
+        '500–2,000+ sq. ft. innovation space',
+        'Digital Incubation ERP portal live',
+        'Annual IIC master workshop calendar',
       ],
     },
     {
       id: 4,
       label: 'STAGE IV – OPERATE & HANDOVER',
-      subtitle: 'Cohort Launch & Self-Sustaining Handover',
+      subtitle: 'Cohort Launch & Handover',
       month: 'M5-12',
       tag: 'Self-Sustaining',
       badge: 'Months 5–12+',
@@ -99,11 +99,11 @@ export const NFArchitectureAndProcess: React.FC<NFArchitectureAndProcessProps> =
       titleColor: isDark ? 'text-emerald-300' : 'text-emerald-800',
       barColor: '#10b981',
       Icon: Rocket,
-      desc: 'Cohort-1 intake, mentor matching, institutional patent filings, investor demo days, faculty upskilling — ending in full operational handover to run a self-sustaining centre.',
+      desc: 'Cohort launch, mentoring, demo days & self-sustaining operational handover.',
       deliverables: [
-        'Cohort-1 student/faculty venture intake',
-        'Investor demo days & institutional patent filings',
-        'Full operational handover for self-sufficiency',
+        'Cohort-1 venture intake & mentoring',
+        'Investor demo days & patent filings',
+        'Turnkey handover for self-sufficiency',
       ],
     },
   ];
@@ -203,16 +203,16 @@ export const NFArchitectureAndProcess: React.FC<NFArchitectureAndProcessProps> =
   return (
     <section
       id="architecture"
-      className={`py-16 relative border-b transition-colors duration-300 ${
+      className={`py-12 sm:py-16 relative border-b transition-colors duration-300 ${
         isDark ? 'bg-[#081528] border-sky-500/20' : 'bg-white border-slate-200'
       }`}
     >
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+      <div className="section-shell">
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-10 items-stretch">
           
           {/* ================= LEFT BOX: THE INTEGRATED SYSTEM ARCHITECTURE ================= */}
           <div
-            className={`flex flex-col glass-card rounded-3xl border p-6 sm:p-8 shadow-2xl relative overflow-hidden ${
+            className={`flex flex-col glass-card rounded-2xl sm:rounded-3xl border p-5 sm:p-6 lg:p-7 shadow-2xl relative overflow-hidden ${
               isDark ? 'border-sky-500/30' : 'border-slate-200 bg-slate-50/70'
             }`}
           >
@@ -221,7 +221,7 @@ export const NFArchitectureAndProcess: React.FC<NFArchitectureAndProcessProps> =
             {/* Header Pill */}
             <div className="flex justify-center mb-6">
               <div
-                className={`inline-flex items-center gap-2.5 px-6 py-2.5 rounded-full shadow-xl border ${
+                className={`section-title-pill !px-4 sm:!px-6 !py-2.5 ${
                   isDark
                     ? 'bg-[#0b1e3c] text-white border-sky-400/40'
                     : 'bg-white text-[#081c3b] border-slate-300 shadow-md'
@@ -229,13 +229,13 @@ export const NFArchitectureAndProcess: React.FC<NFArchitectureAndProcessProps> =
               >
                 <span className="w-2 h-2 rounded-full bg-amber-400 animate-ping" />
                 <h3
-                  className={`text-xs sm:text-sm font-mono font-black tracking-wider uppercase text-center ${
+                  className={`section-title-text !text-xs sm:!text-sm ${
                     isDark
                       ? 'text-transparent bg-clip-text bg-gradient-to-r from-sky-200 to-amber-300'
                       : 'text-[#081c3b]'
                   }`}
                 >
-                  THE FOUR-PILLAR INCUBATION ARCHITECTURE
+                  FOUR-PILLAR INCUBATION ARCHITECTURE
                 </h3>
                 <span className="w-2 h-2 rounded-full bg-sky-400" />
               </div>
@@ -248,7 +248,7 @@ export const NFArchitectureAndProcess: React.FC<NFArchitectureAndProcessProps> =
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-3.5">
                 {/* Pillar 1: Pre-Incubation Ecosystem */}
                 <div
-                  className={`p-4 rounded-2xl border shadow-md flex flex-col justify-between transition-colors ${
+                  className={`p-5 sm:p-6 rounded-2xl border shadow-md flex flex-col justify-between transition-colors ${
                     isDark
                       ? 'bg-slate-900/80 border-sky-500/30 hover:border-sky-400'
                       : 'bg-white border-sky-200 hover:border-sky-400 shadow-xs'
@@ -265,22 +265,22 @@ export const NFArchitectureAndProcess: React.FC<NFArchitectureAndProcessProps> =
                         1. PRE-INCUBATION ECOSYSTEM
                       </h4>
                     </div>
-                    <ul className={`space-y-1 text-xs font-medium ${isDark ? 'text-slate-300' : 'text-slate-700'}`}>
+                    <ul className={`space-y-2 text-xs font-medium leading-relaxed ${isDark ? 'text-slate-300' : 'text-slate-700'}`}>
                       <li className="flex items-start gap-1.5">
                         <span className="text-amber-500 font-mono font-bold leading-none">▶</span>
-                        <span>Idea scouting, hackathons & design-thinking bootcamps</span>
+                        <span><strong className={isDark ? 'text-white' : 'text-slate-900'}>Hackathons & bootcamps</strong> for idea discovery</span>
                       </li>
                       <li className="flex items-start gap-1.5">
                         <span className="text-amber-500 font-mono font-bold leading-none">▶</span>
-                        <span>3–6 month structured cohorts & PoC micro-grants</span>
+                        <span><strong className={isDark ? 'text-white' : 'text-slate-900'}>3–6 month cohorts</strong> with PoC micro-grants</span>
                       </li>
                       <li className="flex items-start gap-1.5">
                         <span className="text-amber-500 font-mono font-bold leading-none">▶</span>
-                        <span>AI / IoT / hardware prototyping access</span>
+                        <span><strong className={isDark ? 'text-white' : 'text-slate-900'}>Prototyping labs</strong> & workstation access</span>
                       </li>
                       <li className="flex items-start gap-1.5">
                         <span className="text-amber-500 font-mono font-bold leading-none">▶</span>
-                        <span>E-Cell revitalisation with calendarised demo days</span>
+                        <span><strong className={isDark ? 'text-white' : 'text-slate-900'}>E-Cell activation</strong> & campus demo days</span>
                       </li>
                     </ul>
                   </div>
@@ -288,7 +288,7 @@ export const NFArchitectureAndProcess: React.FC<NFArchitectureAndProcessProps> =
 
                 {/* Pillar 2: Full-Fledged Incubation */}
                 <div
-                  className={`p-4 rounded-2xl border shadow-md flex flex-col justify-between transition-colors ${
+                  className={`p-5 sm:p-6 rounded-2xl border shadow-md flex flex-col justify-between transition-colors ${
                     isDark
                       ? 'bg-slate-900/80 border-amber-500/30 hover:border-amber-400'
                       : 'bg-white border-amber-200 hover:border-amber-400 shadow-xs'
@@ -305,22 +305,22 @@ export const NFArchitectureAndProcess: React.FC<NFArchitectureAndProcessProps> =
                         2. FULL-FLEDGED INCUBATION
                       </h4>
                     </div>
-                    <ul className={`space-y-1 text-xs font-medium ${isDark ? 'text-slate-300' : 'text-slate-700'}`}>
+                    <ul className={`space-y-2 text-xs font-medium ${isDark ? 'text-slate-300' : 'text-slate-700'}`}>
                       <li className="flex items-start gap-1.5">
                         <span className="text-amber-500 font-mono font-bold leading-none">▶</span>
-                        <span>MVP engineering (Dev-for-Equity framework)</span>
+                        <span><strong className={isDark ? 'text-white' : 'text-slate-900'}>Dev-for-Equity</strong> rapid MVP engineering</span>
                       </li>
                       <li className="flex items-start gap-1.5">
                         <span className="text-amber-500 font-mono font-bold leading-none">▶</span>
-                        <span>Legal incorporation (Pvt Ltd / LLP / MSME)</span>
+                        <span><strong className={isDark ? 'text-white' : 'text-slate-900'}>Entity incorporation</strong> (Pvt Ltd / LLP)</span>
                       </li>
                       <li className="flex items-start gap-1.5">
                         <span className="text-amber-500 font-mono font-bold leading-none">▶</span>
-                        <span>Curated CXO & operator mentorship</span>
+                        <span><strong className={isDark ? 'text-white' : 'text-slate-900'}>CXO mentoring</strong> & operator guidance</span>
                       </li>
                       <li className="flex items-start gap-1.5">
                         <span className="text-amber-500 font-mono font-bold leading-none">▶</span>
-                        <span>Go-to-Market sprints, corporate pilots & angel syndication</span>
+                        <span><strong className={isDark ? 'text-white' : 'text-slate-900'}>GTM pilots</strong> & angel syndication</span>
                       </li>
                     </ul>
                   </div>
@@ -354,7 +354,7 @@ export const NFArchitectureAndProcess: React.FC<NFArchitectureAndProcessProps> =
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-3.5">
                 {/* Pillar 3: IPR & Technology Transfer */}
                 <div
-                  className={`p-4 rounded-2xl border shadow-md flex flex-col justify-between transition-colors ${
+                  className={`p-5 sm:p-6 rounded-2xl border shadow-md flex flex-col justify-between transition-colors ${
                     isDark
                       ? 'bg-slate-900/80 border-sky-500/30 hover:border-sky-400'
                       : 'bg-white border-sky-200 hover:border-sky-400 shadow-xs'
@@ -371,22 +371,22 @@ export const NFArchitectureAndProcess: React.FC<NFArchitectureAndProcessProps> =
                         3. IPR & TECH TRANSFER
                       </h4>
                     </div>
-                    <ul className={`space-y-1 text-xs font-medium ${isDark ? 'text-slate-300' : 'text-slate-700'}`}>
+                    <ul className={`space-y-2 text-xs font-medium ${isDark ? 'text-slate-300' : 'text-slate-700'}`}>
                       <li className="flex items-start gap-1.5">
                         <span className="text-amber-500 font-mono font-bold leading-none">▶</span>
-                        <span>End-to-end patent drafting & filing (provisional/complete)</span>
+                        <span><strong className={isDark ? 'text-white' : 'text-slate-900'}>Patent filings</strong> (provisional & complete)</span>
                       </li>
                       <li className="flex items-start gap-1.5">
                         <span className="text-amber-500 font-mono font-bold leading-none">▶</span>
-                        <span>Institutional IP & equity policy (AICTE-NISP compliant)</span>
+                        <span><strong className={isDark ? 'text-white' : 'text-slate-900'}>AICTE-NISP policy</strong> adoption & setup</span>
                       </li>
                       <li className="flex items-start gap-1.5">
                         <span className="text-amber-500 font-mono font-bold leading-none">▶</span>
-                        <span>Technology Transfer Office (TTO) enablement</span>
+                        <span><strong className={isDark ? 'text-white' : 'text-slate-900'}>TTO enablement</strong> & prior-art training</span>
                       </li>
                       <li className="flex items-start gap-1.5">
                         <span className="text-amber-500 font-mono font-bold leading-none">▶</span>
-                        <span>Corporate licensing & spin-off governance</span>
+                        <span><strong className={isDark ? 'text-white' : 'text-slate-900'}>Corporate licensing</strong> & spin-off models</span>
                       </li>
                     </ul>
                   </div>
@@ -394,7 +394,7 @@ export const NFArchitectureAndProcess: React.FC<NFArchitectureAndProcessProps> =
 
                 {/* Pillar 4: IIC Activities & Accreditation */}
                 <div
-                  className={`p-4 rounded-2xl border shadow-md flex flex-col justify-between transition-colors ${
+                  className={`p-5 sm:p-6 rounded-2xl border shadow-md flex flex-col justify-between transition-colors ${
                     isDark
                       ? 'bg-slate-900/80 border-emerald-500/30 hover:border-emerald-400'
                       : 'bg-white border-emerald-200 hover:border-emerald-400 shadow-xs'
@@ -411,22 +411,22 @@ export const NFArchitectureAndProcess: React.FC<NFArchitectureAndProcessProps> =
                         4. IIC & ACCREDITATION
                       </h4>
                     </div>
-                    <ul className={`space-y-1 text-xs font-medium ${isDark ? 'text-slate-300' : 'text-slate-700'}`}>
+                    <ul className={`space-y-2 text-xs font-medium ${isDark ? 'text-slate-300' : 'text-slate-700'}`}>
                       <li className="flex items-start gap-1.5">
                         <span className="text-amber-500 font-mono font-bold leading-none">▶</span>
-                        <span>100% execution of MIC-mandated IIC annual calendar</span>
+                        <span><strong className={isDark ? 'text-white' : 'text-slate-900'}>100% IIC calendar</strong> execution & ratings</span>
                       </li>
                       <li className="flex items-start gap-1.5">
                         <span className="text-amber-500 font-mono font-bold leading-none">▶</span>
-                        <span>Documented dossiers for NAAC Criterion 3 (KI 3.3)</span>
+                        <span><strong className={isDark ? 'text-white' : 'text-slate-900'}>NAAC Criterion 3</strong> documented dossiers</span>
                       </li>
                       <li className="flex items-start gap-1.5">
                         <span className="text-amber-500 font-mono font-bold leading-none">▶</span>
-                        <span>Complete NBA SAR evidence packs & NIRF RP/GO/OI uplift</span>
+                        <span><strong className={isDark ? 'text-white' : 'text-slate-900'}>NBA SAR evidence</strong> & NIRF RP uplift</span>
                       </li>
                       <li className="flex items-start gap-1.5">
                         <span className="text-amber-500 font-mono font-bold leading-none">▶</span>
-                        <span>ARIIA / NIRF-Innovation & AICTE-NISP adoption</span>
+                        <span><strong className={isDark ? 'text-white' : 'text-slate-900'}>ARIIA & NISP</strong> compliance records</span>
                       </li>
                     </ul>
                   </div>
@@ -440,7 +440,7 @@ export const NFArchitectureAndProcess: React.FC<NFArchitectureAndProcessProps> =
           <div
             id="process"
             ref={processRef}
-            className={`flex flex-col glass-card rounded-3xl border p-6 sm:p-8 shadow-2xl relative overflow-hidden ${
+            className={`flex flex-col glass-card rounded-2xl sm:rounded-3xl border p-5 sm:p-6 lg:p-7 shadow-2xl relative overflow-hidden ${
               isDark ? 'border-sky-500/30' : 'border-slate-200 bg-slate-50/70'
             }`}
           >
@@ -449,7 +449,7 @@ export const NFArchitectureAndProcess: React.FC<NFArchitectureAndProcessProps> =
             {/* Header Pill */}
             <div className="flex justify-center mb-4">
               <div
-                className={`inline-flex items-center gap-2.5 px-6 py-2.5 rounded-full shadow-xl border ${
+                className={`section-title-pill !px-4 sm:!px-6 !py-2.5 ${
                   isDark
                     ? 'bg-[#0b1e3c] text-white border-sky-400/40'
                     : 'bg-white text-[#081c3b] border-slate-300 shadow-md'
@@ -457,20 +457,20 @@ export const NFArchitectureAndProcess: React.FC<NFArchitectureAndProcessProps> =
               >
                 <span className="w-2 h-2 rounded-full bg-amber-400 animate-ping" />
                 <h3
-                  className={`text-xs sm:text-sm font-mono font-black tracking-wider uppercase text-center ${
+                  className={`section-title-text !text-xs sm:!text-sm ${
                     isDark
                       ? 'text-transparent bg-clip-text bg-gradient-to-r from-sky-200 to-amber-300'
                       : 'text-[#081c3b]'
                   }`}
                 >
-                  12-MONTH TURNKEY ROLLOUT JOURNEY
+                  12-MONTH ROLLOUT JOURNEY
                 </h3>
                 <span className="w-2 h-2 rounded-full bg-sky-400" />
               </div>
             </div>
 
             {/* ── INTERACTIVE STAGE MILESTONE TABS ── */}
-            <div className="grid grid-cols-4 gap-1.5 mb-3">
+            <div className="grid grid-cols-2 sm:grid-cols-4 gap-1.5 mb-3">
               {stages.map((st, i) => {
                 const isSelected = i === activeStage;
                 const isPast = i < activeStage;
@@ -512,20 +512,20 @@ export const NFArchitectureAndProcess: React.FC<NFArchitectureAndProcessProps> =
             {/* ── PROGRESS RAIL ── */}
             <div className="mb-4">
               <div className="flex items-center justify-between mb-1.5">
-                <div className="flex items-center gap-2">
+                <div className="flex flex-wrap items-center gap-2 min-w-0">
                   <span className={`text-[10px] font-mono font-bold uppercase tracking-widest ${
                     isDark ? 'text-sky-400' : 'text-[#0284c7]'
                   }`}>
                     Incubation Flow Progress
                   </span>
-                  <span className={`text-[9px] font-mono font-bold px-2 py-0.5 rounded-full border ${
+                  <span className={`text-[9px] font-mono font-bold px-2 py-0.5 rounded-full border safe-wrap ${
                     isDark ? 'bg-sky-500/10 border-sky-400/30 text-sky-300' : 'bg-sky-50 border-sky-200 text-[#0284c7]'
                   }`}>
                     Stage {activeStage + 1} of 4: {stages[activeStage].tag}
                   </span>
                 </div>
 
-                <div className="flex items-center gap-2">
+                <div className="flex items-center gap-2 flex-shrink-0">
                   <button
                     onClick={handleTogglePlay}
                     className={`text-[9px] font-mono font-bold px-2 py-0.5 rounded-lg border flex items-center gap-1 transition-all cursor-pointer ${
@@ -601,7 +601,7 @@ export const NFArchitectureAndProcess: React.FC<NFArchitectureAndProcessProps> =
               </div>
             </div>
 
-            {/* 4 Sequential Stages Cards */}
+{/* 4 Sequential Stages Cards */}
             <div className="flex-1 flex flex-col justify-between space-y-2.5">
               {stages.map((stage, i) => {
                 const Icon = stage.Icon;
@@ -613,7 +613,7 @@ export const NFArchitectureAndProcess: React.FC<NFArchitectureAndProcessProps> =
                   <div
                     key={i}
                     onClick={() => handleSelectStage(i)}
-                    className={`p-3 sm:p-3.5 rounded-2xl border transition-all duration-300 flex items-start gap-3 cursor-pointer group ${
+                    className={`p-4 sm:p-5 rounded-2xl border transition-all duration-300 flex items-start gap-3 cursor-pointer group ${
                       isCurrent
                         ? `${stage.borderActive} scale-[1.01]`
                         : isCompleted
@@ -624,7 +624,7 @@ export const NFArchitectureAndProcess: React.FC<NFArchitectureAndProcessProps> =
                     }`}
                   >
                     {/* Month Badge */}
-                    <div className={`w-11 h-11 rounded-xl border flex flex-col items-center justify-center flex-shrink-0 font-mono transition-all duration-300 ${
+                    <div className={`w-12 h-12 rounded-xl border flex flex-col items-center justify-center flex-shrink-0 font-mono transition-all duration-300 ${
                       stage.iconBg
                     } ${
                       isCurrent ? 'animate-badge-pulse ring-2 ring-amber-400/50' : ''
@@ -634,9 +634,9 @@ export const NFArchitectureAndProcess: React.FC<NFArchitectureAndProcessProps> =
                     </div>
 
                     <div className="flex-1 min-w-0">
-                      <div className="flex items-center justify-between gap-2 mb-1">
-                        <div className="flex items-center gap-1.5 flex-wrap">
-                          <h4 className={`text-[11px] sm:text-xs font-mono font-black uppercase tracking-wider leading-tight ${
+                      <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-1.5 sm:gap-2 mb-2">
+                        <div className="flex items-center gap-1.5 flex-wrap min-w-0">
+                          <h4 className={`text-xs sm:text-sm font-mono font-black uppercase tracking-wide leading-tight safe-wrap ${
                             stage.titleColor
                           }`}>
                             {stage.label}
@@ -648,8 +648,8 @@ export const NFArchitectureAndProcess: React.FC<NFArchitectureAndProcessProps> =
                           </span>
                         </div>
 
-                        <div className="flex items-center gap-1.5 flex-shrink-0">
-                          <span className={`text-[9px] font-mono font-bold px-2 py-0.5 rounded ${stage.tagColor}`}>
+                        <div className="flex items-center gap-1.5 flex-shrink-0 flex-wrap">
+                          <span className={`text-[9px] font-mono font-bold px-2 py-0.5 rounded safe-wrap ${stage.tagColor}`}>
                             {isCompleted ? '✓ Done' : isCurrent ? '● Active' : stage.tag}
                           </span>
                           {/* Animated check when stage is done */}
@@ -665,39 +665,13 @@ export const NFArchitectureAndProcess: React.FC<NFArchitectureAndProcessProps> =
                         </div>
                       </div>
 
-                      <p className={`text-[10px] sm:text-xs leading-relaxed font-medium transition-colors duration-300 mb-1.5 ${
+                      <p className={`text-xs sm:text-sm leading-relaxed font-medium transition-colors duration-300 ${
                         isActive
                           ? isDark ? 'text-slate-200' : 'text-slate-700'
                           : isDark ? 'text-slate-400' : 'text-slate-500'
                       }`}>
                         {stage.desc}
                       </p>
-
-                      {/* Deliverables Checklist (always visible, highlighted when current) */}
-                      <div className={`pt-1.5 border-t space-y-0.5 transition-opacity duration-300 ${
-                        isCurrent
-                          ? isDark ? 'border-sky-500/20' : 'border-sky-100'
-                          : isDark ? 'border-slate-800/80' : 'border-slate-100'
-                      }`}>
-                        {stage.deliverables.map((d, dIdx) => (
-                          <div key={dIdx} className="flex items-center gap-1.5 text-[9px] sm:text-[10px] font-mono">
-                            <span className={`w-1 h-1 rounded-full flex-shrink-0 ${
-                              isCurrent
-                                ? 'bg-amber-400'
-                                : isCompleted
-                                  ? 'bg-emerald-400'
-                                  : isDark ? 'bg-slate-600' : 'bg-slate-400'
-                            }`} />
-                            <span className={`${
-                              isCurrent
-                                ? isDark ? 'text-sky-200 font-semibold' : 'text-[#0369a1] font-semibold'
-                                : isDark ? 'text-slate-400' : 'text-slate-600'
-                            }`}>
-                              {d}
-                            </span>
-                          </div>
-                        ))}
-                      </div>
                     </div>
                   </div>
                 );
@@ -709,7 +683,7 @@ export const NFArchitectureAndProcess: React.FC<NFArchitectureAndProcessProps> =
                   onClick={() => onOpenApplication('institutional')}
                   className="w-full py-3 px-4 rounded-xl text-xs font-mono font-black uppercase tracking-wider text-white bg-gradient-to-r from-[#0284c7] via-[#0369a1] to-[#081c3b] hover:from-[#0ea5e9] hover:to-[#0284c7] shadow-xl border border-sky-400/50 flex items-center justify-center gap-2 transition-all cursor-pointer"
                 >
-                  <span>Book Free On-Campus Readiness Assessment</span>
+                  <span>Book Readiness Assessment</span>
                   <ArrowRight className="w-4 h-4 text-amber-300" />
                 </button>
               </div>
@@ -719,7 +693,7 @@ export const NFArchitectureAndProcess: React.FC<NFArchitectureAndProcessProps> =
 
         {/* Institutional Partnership Framework: Clear Roles (From Proposal Page 2) */}
         <div
-          className={`mt-8 sm:mt-10 p-5 sm:p-7 md:p-8 rounded-3xl glass-card border shadow-2xl relative overflow-hidden ${
+          className={`mt-8 sm:mt-10 p-5 sm:p-7 rounded-2xl sm:rounded-3xl glass-card border shadow-2xl relative overflow-hidden ${
             isDark ? 'border-sky-500/30' : 'border-slate-200 bg-slate-50/80'
           }`}
         >
@@ -739,7 +713,7 @@ export const NFArchitectureAndProcess: React.FC<NFArchitectureAndProcessProps> =
               <h3 className={`text-base sm:text-lg md:text-xl font-black uppercase tracking-tight ${
                 isDark ? 'text-white' : 'text-[#081c3b]'
               }`}>
-                Clear Roles & Institutional Partnership Model
+                Partnership Roles & Responsibilities
               </h3>
             </div>
             <span
@@ -770,26 +744,26 @@ export const NFArchitectureAndProcess: React.FC<NFArchitectureAndProcessProps> =
                   NF VENTURE STUDIO DEPLOYS
                 </h4>
               </div>
-              <ul className={`space-y-2 text-xs sm:text-sm ${isDark ? 'text-slate-200' : 'text-slate-700'}`}>
+              <ul className={`space-y-1.5 text-xs ${isDark ? 'text-slate-200' : 'text-slate-700'}`}>
                 <li className="flex items-start gap-2">
                   <span className="text-amber-500 font-bold">▶</span>
-                  <span>Turnkey operating protocols & Digital Incubation ERP system</span>
+                  <span><strong className={isDark ? 'text-white' : 'text-slate-900'}>Turnkey protocols</strong> & Digital Incubation ERP</span>
                 </li>
                 <li className="flex items-start gap-2">
                   <span className="text-amber-500 font-bold">▶</span>
-                  <span>Experienced venture builders, domain mentors & CXO operators</span>
+                  <span><strong className={isDark ? 'text-white' : 'text-slate-900'}>Venture builders</strong> & CXO operator mentors</span>
                 </li>
                 <li className="flex items-start gap-2">
                   <span className="text-amber-500 font-bold">▶</span>
-                  <span>Structured cohorts, hackathons, bootcamps & patent drafting</span>
+                  <span><strong className={isDark ? 'text-white' : 'text-slate-900'}>Structured cohorts</strong>, hackathons & patent drafting</span>
                 </li>
                 <li className="flex items-start gap-2">
                   <span className="text-amber-500 font-bold">▶</span>
-                  <span>Active investor networks, angel syndication & corporate pilots</span>
+                  <span><strong className={isDark ? 'text-white' : 'text-slate-900'}>Investor networks</strong> & corporate Go-to-Market pilots</span>
                 </li>
                 <li className="flex items-start gap-2">
                   <span className="text-amber-500 font-bold">▶</span>
-                  <span>Quarterly compliance dossiers for NAAC, NBA, NIRF, IIC & AICTE-NISP</span>
+                  <span><strong className={isDark ? 'text-white' : 'text-slate-900'}>Compliance dossiers</strong> for NAAC, NBA, NIRF & IIC</span>
                 </li>
               </ul>
             </div>
@@ -810,26 +784,26 @@ export const NFArchitectureAndProcess: React.FC<NFArchitectureAndProcessProps> =
                   YOUR INSTITUTE PROVIDES
                 </h4>
               </div>
-              <ul className={`space-y-2 text-xs sm:text-sm ${isDark ? 'text-slate-200' : 'text-slate-700'}`}>
+              <ul className={`space-y-1.5 text-xs ${isDark ? 'text-slate-200' : 'text-slate-700'}`}>
                 <li className="flex items-start gap-2">
                   <span className="text-sky-500 font-bold">▶</span>
-                  <span>Dedicated physical space (500–2,000+ sq. ft.) on campus</span>
+                  <span><strong className={isDark ? 'text-white' : 'text-slate-900'}>Campus space</strong> (500–2,000+ sq. ft.)</span>
                 </li>
                 <li className="flex items-start gap-2">
                   <span className="text-sky-500 font-bold">▶</span>
-                  <span>Basic infrastructure (power, high-speed internet, desks)</span>
+                  <span><strong className={isDark ? 'text-white' : 'text-slate-900'}>Basic infrastructure</strong> (power, internet & desks)</span>
                 </li>
                 <li className="flex items-start gap-2">
                   <span className="text-sky-500 font-bold">▶</span>
-                  <span>Designated Faculty Incubation SPOC + IIC Coordinator</span>
+                  <span><strong className={isDark ? 'text-white' : 'text-slate-900'}>Faculty SPOC</strong> & IIC Coordinator nomination</span>
                 </li>
                 <li className="flex items-start gap-2">
                   <span className="text-sky-500 font-bold">▶</span>
-                  <span>Outreach, student awareness & participation support across departments</span>
+                  <span><strong className={isDark ? 'text-white' : 'text-slate-900'}>Student outreach</strong> across campus departments</span>
                 </li>
                 <li className="flex items-start gap-2">
                   <span className="text-sky-500 font-bold">▶</span>
-                  <span>Institutional Incubation Board representation & IP policy ratification</span>
+                  <span><strong className={isDark ? 'text-white' : 'text-slate-900'}>Incubation Board</strong> & IP policy adoption</span>
                 </li>
               </ul>
             </div>

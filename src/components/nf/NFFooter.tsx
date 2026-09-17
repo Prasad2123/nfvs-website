@@ -1,13 +1,15 @@
 import React, { useState } from 'react';
 import { NFLogo } from './NFLogo';
-import { Phone, Lightbulb, FlaskConical, Sparkles, Target, Copy, Check, MessageSquare } from 'lucide-react';
+import { Phone, Lightbulb, FlaskConical, Sparkles, Target, Copy, Check, MessageSquare, ArrowUp } from 'lucide-react';
 
 interface NFFooterProps {
   onOpenApplication: (track?: string) => void;
   isDark?: boolean;
+  showScrollTop?: boolean;
+  scrollToTop?: () => void;
 }
 
-export const NFFooter: React.FC<NFFooterProps> = ({ onOpenApplication, isDark = true }) => {
+export const NFFooter: React.FC<NFFooterProps> = ({ onOpenApplication, isDark = true, showScrollTop = false, scrollToTop }) => {
   const [copied, setCopied] = useState(false);
 
   const handleCopyPhone = () => {
@@ -31,7 +33,7 @@ export const NFFooter: React.FC<NFFooterProps> = ({ onOpenApplication, isDark = 
 
         {/* Main 3-Column Footer Bar */}
         <div
-          className={`grid grid-cols-1 lg:grid-cols-12 gap-6 sm:gap-8 items-center p-5 sm:p-7 md:p-8 rounded-2xl sm:rounded-3xl border shadow-2xl backdrop-blur-xl reveal ${
+          className={`grid grid-cols-1 lg:grid-cols-12 gap-6 sm:gap-8 items-center p-5 sm:p-7 rounded-2xl sm:rounded-3xl border shadow-2xl backdrop-blur-xl reveal ${
             isDark ? 'bg-[#0b1a33]/80 border-sky-500/40' : 'bg-white/90 border-sky-300/60'
           }`}
         >
@@ -55,7 +57,7 @@ export const NFFooter: React.FC<NFFooterProps> = ({ onOpenApplication, isDark = 
               <div className="flex flex-col items-center sm:items-start">
                 <a
                   href="tel:8379879846"
-                  className={`text-2xl sm:text-3xl font-mono font-black tracking-tight transition-colors block ${
+                  className={`text-2xl sm:text-3xl font-mono font-black tracking-tight transition-colors block safe-wrap ${
                     isDark ? 'text-white hover:text-amber-300' : 'text-slate-900 hover:text-amber-600'
                   }`}
                 >
@@ -107,7 +109,7 @@ export const NFFooter: React.FC<NFFooterProps> = ({ onOpenApplication, isDark = 
             <p className={`text-xs font-mono mt-2 max-w-xs leading-relaxed ${
               isDark ? 'text-sky-200/80' : 'text-slate-600'
             }`}>
-              Deep-tech ecosystem nurturing students, faculty, and innovators to build impactful ventures.
+              Deep-tech ecosystem for students, faculty, and innovators building venture-ready ideas.
             </p>
           </div>
 
@@ -181,7 +183,7 @@ export const NFFooter: React.FC<NFFooterProps> = ({ onOpenApplication, isDark = 
 
         {/* Official Institutional Leadership & Location Strip */}
         <div
-          className={`p-5 sm:p-7 rounded-2xl sm:rounded-3xl border grid grid-cols-1 md:grid-cols-3 gap-6 items-center reveal delay-2 ${
+          className={`p-5 sm:p-7 rounded-2xl sm:rounded-3xl border grid grid-cols-1 md:grid-cols-3 gap-6 items-start md:items-center reveal delay-2 ${
             isDark ? 'bg-[#0b1a33]/80 border-sky-500/30' : 'bg-white/90 border-sky-300/50'
           }`}
         >
@@ -192,7 +194,7 @@ export const NFFooter: React.FC<NFFooterProps> = ({ onOpenApplication, isDark = 
             <div className={`text-base sm:text-lg font-black ${isDark ? 'text-white' : 'text-slate-900'}`}>
               Mr. Ashok Patil
             </div>
-            <div className={`text-xs font-medium mt-0.5 ${isDark ? 'text-slate-300' : 'text-slate-600'}`}>
+            <div className={`text-xs font-medium mt-0.5 safe-wrap ${isDark ? 'text-slate-300' : 'text-slate-600'}`}>
               CEO, NF Venture Studio — A NAREE Foundation Initiative
             </div>
           </div>
@@ -201,23 +203,23 @@ export const NFFooter: React.FC<NFFooterProps> = ({ onOpenApplication, isDark = 
             <div className="text-[10px] font-mono font-bold uppercase tracking-wider text-sky-500 mb-1">
               STUDIO HEADQUARTERS
             </div>
-            <div className={`text-xs sm:text-sm leading-relaxed font-medium ${isDark ? 'text-slate-200' : 'text-slate-700'}`}>
+            <div className={`text-xs sm:text-sm leading-relaxed font-medium safe-wrap ${isDark ? 'text-slate-200' : 'text-slate-700'}`}>
               Parijatak, Near Nigdi Police Station, Nigdi, Pune – 411044, Maharashtra
             </div>
           </div>
 
-          <div className="flex flex-col sm:flex-row md:flex-col gap-2 justify-center md:items-end text-xs font-mono">
-            <div className={`flex items-center gap-2 ${isDark ? 'text-slate-300' : 'text-slate-600'}`}>
+          <div className="flex flex-col gap-2 justify-center md:items-end text-xs font-mono min-w-0">
+            <div className={`flex flex-wrap items-center gap-2 min-w-0 ${isDark ? 'text-slate-300' : 'text-slate-600'}`}>
               <span className="text-amber-500">✉️</span>
-              <a href="mailto:contact@ncfvs.in" className={`hover:underline ${isDark ? 'hover:text-white' : 'hover:text-slate-900'}`}>contact@ncfvs.in</a>
+              <a href="mailto:contact@ncfvs.in" className={`hover:underline safe-wrap ${isDark ? 'hover:text-white' : 'hover:text-slate-900'}`}>contact@ncfvs.in</a>
               <span>·</span>
-              <a href="mailto:ncfventurestudio@gmail.com" className={`hover:underline ${isDark ? 'hover:text-white' : 'hover:text-slate-900'}`}>ncfventurestudio@gmail.com</a>
+              <a href="mailto:ncfventurestudio@gmail.com" className={`hover:underline safe-wrap ${isDark ? 'hover:text-white' : 'hover:text-slate-900'}`}>ncfventurestudio@gmail.com</a>
             </div>
-            <div className={`flex items-center gap-2 ${isDark ? 'text-slate-300' : 'text-slate-600'}`}>
+            <div className={`flex flex-wrap items-center gap-2 min-w-0 ${isDark ? 'text-slate-300' : 'text-slate-600'}`}>
               <span className="text-sky-500">🌐</span>
-              <a href="https://www.ncfvs.in" target="_blank" rel="noreferrer" className={`font-bold hover:underline ${isDark ? 'text-sky-300 hover:text-white' : 'text-sky-600 hover:text-sky-800'}`}>www.ncfvs.in</a>
+              <a href="https://www.ncfvs.in" target="_blank" rel="noreferrer" className={`font-bold hover:underline safe-wrap ${isDark ? 'text-sky-300 hover:text-white' : 'text-sky-600 hover:text-sky-800'}`}>www.ncfvs.in</a>
               <span>·</span>
-              <span className={`font-bold ${isDark ? 'text-amber-300' : 'text-amber-700'}`}>+91 83798 79846 | +91 9209112577</span>
+              <span className={`font-bold safe-wrap ${isDark ? 'text-amber-300' : 'text-amber-700'}`}>+91 83798 79846 | +91 9209112577</span>
             </div>
           </div>
         </div>
@@ -226,10 +228,10 @@ export const NFFooter: React.FC<NFFooterProps> = ({ onOpenApplication, isDark = 
         <div className={`pt-3 sm:pt-4 border-t flex flex-col sm:flex-row items-center justify-between text-[11px] sm:text-xs gap-2 sm:gap-3 font-mono text-center sm:text-left ${
           isDark ? 'border-slate-800/80 text-slate-400' : 'border-slate-300 text-slate-500'
         }`}>
-          <div>
+          <div className="safe-wrap">
             © {new Date().getFullYear()} <strong className={isDark ? 'text-white' : 'text-slate-900'}>NF Venture Studio</strong> • A NAREE Foundation Initiative, Pune. All rights reserved.
           </div>
-          <div className="flex items-center gap-3 sm:gap-4 flex-wrap justify-center">
+          <div className="flex items-center gap-2 sm:gap-4 flex-wrap justify-center">
             <button
               onClick={() => onOpenApplication('institutional')}
               className={`hover:underline font-semibold cursor-pointer ${
@@ -245,7 +247,7 @@ export const NFFooter: React.FC<NFFooterProps> = ({ onOpenApplication, isDark = 
                 isDark ? 'text-slate-400 hover:text-sky-300' : 'text-slate-600 hover:text-sky-600'
               }`}
             >
-              Apply Online
+              Apply for Incubation Center
             </button>
             <span>•</span>
             <a href="#tracks" className={`font-semibold transition-colors ${
@@ -256,6 +258,45 @@ export const NFFooter: React.FC<NFFooterProps> = ({ onOpenApplication, isDark = 
           </div>
         </div>
 
+      </div>
+
+      {/* Floating CTA Buttons - Fixed position at bottom right */}
+      <div className="fixed bottom-3 right-3 sm:bottom-6 sm:right-6 z-30 flex flex-col items-end gap-2 sm:gap-3 no-print">
+        {showScrollTop && scrollToTop && (
+          <button
+            onClick={scrollToTop}
+            className={`w-9 h-9 sm:w-10 sm:h-10 rounded-full shadow-xl border flex items-center justify-center transition-all hover:scale-110 backdrop-blur-md cursor-pointer animate-scale-in ${
+              isDark
+                ? 'bg-[#0b1e3c]/90 text-sky-400 border-sky-400/40 hover:bg-sky-500/20'
+                : 'bg-white text-[#081c3b] border-slate-300 hover:bg-slate-50 shadow-md'
+            }`}
+            title="Scroll to top"
+            aria-label="Scroll to top"
+          >
+            <ArrowUp className="w-4 h-4 sm:w-5 sm:h-5 text-amber-400" />
+          </button>
+        )}
+
+        <div className="flex items-center gap-1.5 sm:gap-2.5 xs-stack">
+          <a
+            href="tel:8379879846"
+            className="px-3 py-2 sm:px-4 sm:py-2.5 rounded-xl bg-gradient-to-r from-[#fbbf24] via-[#f59e0b] to-[#d97706] text-[#081c3b] font-black text-[11px] sm:text-xs shadow-xl hover:shadow-amber-500/40 transition-all flex items-center justify-center gap-1.5 sm:gap-2 hover:scale-105 border border-amber-300 btn-neon-amber"
+            title="Call Helpline: 8379879846"
+          >
+            <Phone className="w-3.5 h-3.5 sm:w-4 sm:h-4 fill-[#081c3b]" />
+            <span className="font-extrabold tracking-wide font-mono">8379879846</span>
+          </a>
+
+          <button
+            onClick={() => onOpenApplication('student')}
+            title="Apply for Incubation Center"
+            aria-label="Apply for Incubation Center"
+            className="px-3.5 py-2 sm:px-5 sm:py-2.5 rounded-xl bg-gradient-to-r from-[#0284c7] via-[#0369a1] to-[#081c3b] text-white font-black text-[11px] sm:text-xs uppercase tracking-wider shadow-xl hover:shadow-sky-600/40 transition-all flex items-center justify-center gap-1.5 sm:gap-2 border border-sky-400/50 hover:scale-105 cursor-pointer btn-neon-blue animate-shimmer"
+          >
+            <Sparkles className="w-3.5 h-3.5 sm:w-4 sm:h-4 text-amber-400" />
+            <span>Apply Now</span>
+          </button>
+        </div>
       </div>
     </footer>
   );

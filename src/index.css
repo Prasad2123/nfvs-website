@@ -19,8 +19,16 @@
     --primary-foreground: 222.2 47.4% 11.2%;
   }
 
+  html {
+    overflow-x: hidden;
+    max-width: 100vw;
+    scroll-padding-top: 88px;
+  }
+
   body {
     font-family: 'Plus Jakarta Sans', sans-serif;
+    overflow-x: hidden;
+    max-width: 100vw;
     @apply bg-slate-50 text-slate-800 antialiased selection:bg-[#0284c7] selection:text-white transition-colors duration-300;
   }
 
@@ -32,9 +40,65 @@
   code, pre, .font-mono {
     font-family: 'JetBrains Mono', monospace;
   }
+
+  img, video, canvas, svg {
+    max-width: 100%;
+  }
+
+  button, a, input, select, textarea {
+    min-width: 0;
+  }
 }
 
 @layer utilities {
+  .text-balance {
+    text-wrap: balance;
+  }
+
+  .text-pretty {
+    text-wrap: pretty;
+  }
+
+  .safe-wrap {
+    overflow-wrap: anywhere;
+    word-break: normal;
+  }
+
+  .section-shell {
+    @apply max-w-7xl mx-auto px-3.5 sm:px-6 lg:px-8 relative z-10 w-full;
+  }
+
+  .section-title-pill {
+    @apply inline-flex max-w-full items-center justify-center gap-2 sm:gap-3 px-4 sm:px-6 lg:px-8 py-2.5 sm:py-3 rounded-full shadow-xl border-2 backdrop-blur-md;
+  }
+
+  .section-title-text {
+    @apply text-xs sm:text-sm md:text-base font-mono font-black tracking-wider sm:tracking-widest uppercase text-center leading-snug text-balance;
+  }
+
+  .nf-card {
+    @apply rounded-2xl border shadow-lg overflow-hidden;
+  }
+
+  .nf-compact-list {
+    @apply space-y-2 text-xs sm:text-sm leading-relaxed;
+  }
+
+  .no-scrollbar {
+    scrollbar-width: none;
+    -ms-overflow-style: none;
+  }
+  .no-scrollbar::-webkit-scrollbar {
+    display: none;
+  }
+
+  @media (max-width: 380px) {
+    .xs-stack {
+      flex-direction: column;
+      align-items: stretch;
+    }
+  }
+
   /* High-Tech Circuit & Dot Grids */
   .bg-tech-grid {
     background-size: 36px 36px;
@@ -98,10 +162,12 @@
   .glass-card-hover {
     transition: all 0.35s cubic-bezier(0.4, 0, 0.2, 1);
   }
-  .glass-card-hover:hover {
-    transform: translateY(-6px);
-    border-color: rgba(56, 189, 248, 0.5);
-    box-shadow: 0 25px 50px -15px rgba(2, 132, 199, 0.25), 0 0 25px rgba(245, 158, 11, 0.12);
+  @media (hover: hover) and (pointer: fine) {
+    .glass-card-hover:hover {
+      transform: translateY(-6px);
+      border-color: rgba(56, 189, 248, 0.5);
+      box-shadow: 0 25px 50px -15px rgba(2, 132, 199, 0.25), 0 0 25px rgba(245, 158, 11, 0.12);
+    }
   }
 
   /* ============================================================
@@ -310,23 +376,29 @@
     transform-style: preserve-3d;
     transition: transform 0.3s ease;
   }
-  .tilt-card:hover { transform: perspective(800px) rotateX(2deg) rotateY(-2deg) scale(1.02); }
+  @media (hover: hover) and (pointer: fine) {
+    .tilt-card:hover { transform: perspective(800px) rotateX(2deg) rotateY(-2deg) scale(1.02); }
+  }
 
   /* Neon glow button */
   .btn-neon-blue {
     position: relative;
     transition: all 0.3s ease;
   }
-  .btn-neon-blue:hover {
-    box-shadow: 0 0 15px rgba(56, 189, 248, 0.6), 0 0 30px rgba(56, 189, 248, 0.3);
+  @media (hover: hover) and (pointer: fine) {
+    .btn-neon-blue:hover {
+      box-shadow: 0 0 15px rgba(56, 189, 248, 0.6), 0 0 30px rgba(56, 189, 248, 0.3);
+    }
   }
 
   .btn-neon-amber {
     position: relative;
     transition: all 0.3s ease;
   }
-  .btn-neon-amber:hover {
-    box-shadow: 0 0 15px rgba(245, 158, 11, 0.6), 0 0 30px rgba(245, 158, 11, 0.3);
+  @media (hover: hover) and (pointer: fine) {
+    .btn-neon-amber:hover {
+      box-shadow: 0 0 15px rgba(245, 158, 11, 0.6), 0 0 30px rgba(245, 158, 11, 0.3);
+    }
   }
 
   /* Glowing border on focus */

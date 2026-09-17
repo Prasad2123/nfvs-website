@@ -15,16 +15,16 @@ export const NFSupportSection: React.FC<NFSupportSectionProps> = ({
   return (
     <section
       id="support"
-      className={`py-16 relative border-b transition-colors duration-300 ${
+      className={`py-12 sm:py-16 relative border-b transition-colors duration-300 ${
         isDark ? 'bg-[#060f1e] border-sky-500/20' : 'bg-slate-50 border-slate-200'
       }`}
     >
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+      <div className="section-shell">
         
         {/* Section Header Pill */}
-        <div className="flex justify-center mb-12 reveal">
+        <div className="flex justify-center mb-8 sm:mb-12 reveal">
           <div
-            className={`inline-flex items-center gap-3 px-8 py-3 rounded-full shadow-2xl border-2 backdrop-blur-md ${
+            className={`section-title-pill ${
               isDark
                 ? 'bg-[#0b1e3c] text-white border-sky-400/40'
                 : 'bg-white text-[#081c3b] border-slate-300 shadow-md'
@@ -32,7 +32,7 @@ export const NFSupportSection: React.FC<NFSupportSectionProps> = ({
           >
             <span className="w-2.5 h-2.5 rounded-full bg-amber-400 animate-ping" />
             <h2
-              className={`text-sm sm:text-base md:text-lg font-mono font-black tracking-widest uppercase text-center ${
+                className={`section-title-text ${
                 isDark
                   ? 'text-transparent bg-clip-text bg-gradient-to-r from-sky-200 to-amber-300 animate-gradient-text'
                   : 'text-[#081c3b]'
@@ -49,11 +49,11 @@ export const NFSupportSection: React.FC<NFSupportSectionProps> = ({
           
           {/* Card 1: IPR & Technology Transfer Engine */}
           <div
-            className={`relative flex flex-col justify-between glass-card rounded-2xl border hover:border-sky-400 shadow-xl transition-all duration-300 overflow-hidden glass-card-hover tilt-card ${
+            className={`relative flex flex-col justify-between glass-card nf-card hover:border-sky-400 transition-all duration-300 glass-card-hover tilt-card ${
               isDark ? 'border-sky-500/30' : 'border-slate-200 bg-white'
             }`}
           >
-            <div className="p-6 sm:p-7 flex-1 flex flex-col">
+            <div className="p-5 sm:p-6 flex-1 flex flex-col">
               {/* Header Icon + Title */}
               <div className="flex items-center gap-3.5 mb-5">
                 <div
@@ -67,7 +67,7 @@ export const NFSupportSection: React.FC<NFSupportSectionProps> = ({
                 </div>
                 <div>
                   <h3
-                    className={`text-base sm:text-lg font-black tracking-tight uppercase leading-snug ${
+                    className={`text-base sm:text-lg font-black tracking-tight uppercase leading-snug text-balance ${
                       isDark ? 'text-white' : 'text-[#081c3b]'
                     }`}
                   >
@@ -80,28 +80,33 @@ export const NFSupportSection: React.FC<NFSupportSectionProps> = ({
               </div>
 
               {/* Exact Bullets from Proposal & Brochure */}
-              <div className="space-y-3 flex-1">
+              <div className="nf-compact-list flex-1">
                 {[
-                  'End-to-end patent drafting & filing (provisional/complete + trademarks)',
-                  'Institutional IP & equity-sharing policy (AICTE-NISP compliant)',
-                  'Technology Transfer Office (TTO) enablement & prior-art training',
-                  'Corporate licensing frameworks & spin-off governance',
+                  { bold: 'Patent drafting & filing', text: ' (provisional & complete)' },
+                  { bold: 'AICTE-NISP IP policy', text: ' & institutional equity rules' },
+                  { bold: 'TTO enablement', text: ' & faculty prior-art training' },
+                  { bold: 'Corporate licensing', text: ' & spin-off governance' },
                 ].map((item, idx) => (
                   <div
                     key={idx}
-                    className={`flex items-start gap-2.5 text-xs sm:text-sm font-medium leading-relaxed ${
+                    className={`flex items-start gap-2 font-medium ${
                       isDark ? 'text-slate-200' : 'text-slate-700'
                     }`}
                   >
-                    <span className="text-amber-500 font-mono font-bold text-base leading-none">▶</span>
-                    <span>{item}</span>
+                    <span className="text-amber-500 font-mono font-bold text-xs leading-none mt-1">▶</span>
+                    <span className="text-xs">
+                      <strong className={isDark ? 'text-white font-semibold' : 'text-slate-900 font-bold'}>
+                        {item.bold}
+                      </strong>
+                      {item.text}
+                    </span>
                   </div>
                 ))}
               </div>
 
               {/* Trust Badge */}
               <div
-                className={`mt-5 p-3 rounded-xl border flex items-center justify-between ${
+                className={`mt-5 p-3 rounded-xl border flex flex-wrap items-center justify-between gap-2 ${
                   isDark
                     ? 'bg-slate-900/80 border-sky-500/25 text-slate-200'
                     : 'bg-slate-50 border-slate-200 text-slate-700'
@@ -140,11 +145,11 @@ export const NFSupportSection: React.FC<NFSupportSectionProps> = ({
 
           {/* Card 2: High-Tech Prototyping Infrastructure */}
           <div
-            className={`relative flex flex-col justify-between glass-card-gold rounded-2xl border hover:border-amber-400 shadow-xl transition-all duration-300 overflow-hidden glass-card-hover tilt-card ${
+            className={`relative flex flex-col justify-between glass-card-gold nf-card hover:border-amber-400 transition-all duration-300 glass-card-hover tilt-card ${
               isDark ? 'border-amber-500/30' : 'border-amber-200 bg-amber-50/30'
             }`}
           >
-            <div className="p-6 sm:p-7 flex-1 flex flex-col">
+            <div className="p-5 sm:p-6 flex-1 flex flex-col">
               {/* Header Icon + Title */}
               <div className="flex items-center gap-3.5 mb-5">
                 <div
@@ -158,7 +163,7 @@ export const NFSupportSection: React.FC<NFSupportSectionProps> = ({
                 </div>
                 <div>
                   <h3
-                    className={`text-base sm:text-lg font-black tracking-tight uppercase leading-snug ${
+                    className={`text-base sm:text-lg font-black tracking-tight uppercase leading-snug text-balance ${
                       isDark ? 'text-white' : 'text-[#081c3b]'
                     }`}
                   >
@@ -171,23 +176,33 @@ export const NFSupportSection: React.FC<NFSupportSectionProps> = ({
               </div>
 
               {/* Exact Bullets from Proposal & Brochure */}
-              <div className="space-y-3 flex-1">
+              <div className="nf-compact-list flex-1">
                 <div
-                  className={`flex items-start gap-2.5 text-xs sm:text-sm font-medium leading-relaxed ${
+                  className={`flex items-start gap-2 font-medium ${
                     isDark ? 'text-slate-200' : 'text-slate-700'
                   }`}
                 >
-                  <span className="text-amber-500 font-mono font-bold text-base leading-none">▶</span>
-                  <span>500–2,000+ sq. ft. campus co-working & prototyping optimisation</span>
+                  <span className="text-amber-500 font-mono font-bold text-xs leading-none mt-1">▶</span>
+                  <span className="text-xs">
+                    <strong className={isDark ? 'text-white font-semibold' : 'text-slate-900 font-bold'}>
+                      500–2,000+ sq. ft.
+                    </strong>{' '}
+                    campus prototyping & co-working space
+                  </span>
                 </div>
 
                 <div
-                  className={`flex items-start gap-2.5 text-xs sm:text-sm font-medium leading-relaxed ${
+                  className={`flex items-start gap-2 font-medium ${
                     isDark ? 'text-slate-200' : 'text-slate-700'
                   }`}
                 >
-                  <span className="text-amber-500 font-mono font-bold text-base leading-none">▶</span>
-                  <span>Specialised hardware testbeds & Digital Incubation ERP</span>
+                  <span className="text-amber-500 font-mono font-bold text-xs leading-none mt-1">▶</span>
+                  <span className="text-xs">
+                    <strong className={isDark ? 'text-white font-semibold' : 'text-slate-900 font-bold'}>
+                      Hardware testbeds
+                    </strong>{' '}
+                    with Digital Incubation ERP
+                  </span>
                 </div>
 
                 {/* Focus Areas High-Tech Buttons */}
@@ -200,7 +215,7 @@ export const NFSupportSection: React.FC<NFSupportSectionProps> = ({
                     <span className={isDark ? 'text-sky-400 font-bold' : 'text-[#0284c7] font-bold'}>▶</span> 4 Specialised Domain Labs:
                   </div>
 
-                  <div className="grid grid-cols-2 sm:grid-cols-4 gap-2">
+                  <div className="grid grid-cols-2 gap-2">
                     <button
                       onClick={() => onOpenLabDetails('AI')}
                       className={`p-2.5 rounded-xl border text-xs font-bold transition-all shadow-xs flex flex-col items-center justify-center gap-1 group cursor-pointer ${
@@ -258,7 +273,7 @@ export const NFSupportSection: React.FC<NFSupportSectionProps> = ({
 
               {/* Tag */}
               <div
-                className={`mt-4 p-2.5 rounded-xl border flex items-center justify-between text-xs ${
+                className={`mt-4 p-2.5 rounded-xl border flex flex-wrap items-center justify-between gap-2 text-xs ${
                   isDark
                     ? 'bg-slate-900/80 border-amber-500/30'
                     : 'bg-white border-amber-200 text-amber-800'
@@ -296,11 +311,11 @@ export const NFSupportSection: React.FC<NFSupportSectionProps> = ({
 
           {/* Card 3: Grant Engineering & Investor Engagement */}
           <div
-            className={`relative flex flex-col justify-between glass-card rounded-2xl border hover:border-emerald-400 shadow-xl transition-all duration-300 overflow-hidden glass-card-hover tilt-card ${
+            className={`relative flex flex-col justify-between glass-card nf-card hover:border-emerald-400 transition-all duration-300 glass-card-hover tilt-card ${
               isDark ? 'border-sky-500/30' : 'border-slate-200 bg-white'
             }`}
           >
-            <div className="p-6 sm:p-7 flex-1 flex flex-col">
+            <div className="p-5 sm:p-6 flex-1 flex flex-col">
               {/* Header Icon + Title */}
               <div className="flex items-center gap-3.5 mb-5">
                 <div
@@ -314,7 +329,7 @@ export const NFSupportSection: React.FC<NFSupportSectionProps> = ({
                 </div>
                 <div>
                   <h3
-                    className={`text-base sm:text-lg font-black tracking-tight uppercase leading-snug ${
+                    className={`text-base sm:text-lg font-black tracking-tight uppercase leading-snug text-balance ${
                       isDark ? 'text-white' : 'text-[#081c3b]'
                     }`}
                   >
@@ -327,34 +342,39 @@ export const NFSupportSection: React.FC<NFSupportSectionProps> = ({
               </div>
 
               {/* Exact Bullets from Proposal & Brochure */}
-              <div className="space-y-3 flex-1">
+              <div className="nf-compact-list flex-1">
                 {[
-                  'Non-dilutive grant readiness (NIDHI, BIRAC, MSME, MeitY)',
-                  'Proof-of-Concept (PoC) micro-grants & institutional seed funding',
-                  'Curated CXO & operator mentorship with Go-to-Market corporate pilots',
-                  'Investor demo days, angel syndication & micro-VC networks (₹3Cr+ lines)',
+                  { bold: 'Non-dilutive grants', text: ' (NIDHI, BIRAC, MSME, MeitY)' },
+                  { bold: 'PoC micro-grants', text: ' & institutional seed capital' },
+                  { bold: 'CXO mentorship', text: ' & Go-to-Market corporate pilots' },
+                  { bold: 'Investor demo days', text: ' & angel syndication (₹3Cr+ lines)' },
                 ].map((item, idx) => (
                   <div
                     key={idx}
-                    className={`flex items-start gap-2.5 text-xs sm:text-sm font-medium leading-relaxed ${
+                    className={`flex items-start gap-2 font-medium ${
                       isDark ? 'text-slate-200' : 'text-slate-700'
                     }`}
                   >
-                    <span className="text-amber-500 font-mono font-bold text-base leading-none">▶</span>
-                    <span>{item}</span>
+                    <span className="text-amber-500 font-mono font-bold text-xs leading-none mt-1">▶</span>
+                    <span className="text-xs">
+                      <strong className={isDark ? 'text-white font-semibold' : 'text-slate-900 font-bold'}>
+                        {item.bold}
+                      </strong>
+                      {item.text}
+                    </span>
                   </div>
                 ))}
               </div>
 
               {/* Trust Badge */}
               <div
-                className={`mt-5 p-3 rounded-xl border flex items-center justify-between ${
+                className={`mt-5 p-3 rounded-xl border flex flex-wrap items-center justify-between gap-2 ${
                   isDark
                     ? 'bg-slate-900/80 border-emerald-500/25 text-slate-200'
                     : 'bg-slate-50 border-emerald-200 text-slate-700'
                 }`}
               >
-                <div className="flex items-center gap-2 text-xs font-bold">
+                <div className="flex items-center gap-2 text-xs font-bold safe-wrap">
                   <IndianRupee className="w-4 h-4 text-emerald-500" />
                   <span>₹3Cr+ Grant Pipeline</span>
                 </div>

@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { NFLogo } from './NFLogo';
-import { Sparkles, ArrowRight, ShieldCheck, Rocket, ChevronRight, Layers, BarChart3, Binary, Zap, Terminal } from 'lucide-react';
+import { Sparkles, ArrowRight, ShieldCheck, Rocket, ChevronRight, BarChart3, Zap } from 'lucide-react';
 
 interface NFHeroSectionProps {
   onOpenApplication: (track?: string) => void;
@@ -97,7 +96,7 @@ export const NFHeroSection: React.FC<NFHeroSectionProps> = ({
         isDark ? 'bg-amber-500/10' : 'bg-amber-400/15'
       }`} />
 
-      <div className="max-w-7xl mx-auto px-3.5 sm:px-6 lg:px-8 relative z-10">
+      <div className="section-shell">
 
         {/* Top Tagline Pill Banner */}
         <div className="flex justify-center mb-5 sm:mb-6 reveal">
@@ -113,7 +112,7 @@ export const NFHeroSection: React.FC<NFHeroSectionProps> = ({
               <span className="relative inline-flex rounded-full h-2 w-2 sm:h-2.5 sm:w-2.5 bg-amber-400" />
             </span>
             <span
-              className={`text-[10px] sm:text-xs md:text-sm font-black tracking-wider sm:tracking-widest uppercase font-mono text-center leading-tight ${
+              className={`text-[10px] sm:text-xs md:text-sm font-black tracking-wider sm:tracking-widest uppercase font-mono text-center leading-tight text-balance ${
                 isDark
                   ? 'text-transparent bg-clip-text bg-gradient-to-r from-sky-200 via-white to-amber-300'
                   : 'text-[#081c3b]'
@@ -134,37 +133,26 @@ export const NFHeroSection: React.FC<NFHeroSectionProps> = ({
           {/* Left Column: Tech & Business Venture Engine (7 cols) */}
           <div className="lg:col-span-7 space-y-5 sm:space-y-6">
             <div className="space-y-3.5 sm:space-y-4">
-              <div
-                className={`inline-flex items-center gap-1.5 sm:gap-2 px-2.5 sm:px-3 py-1 rounded-lg border text-[10px] sm:text-xs font-mono max-w-full reveal ${
-                  isDark
-                    ? 'bg-sky-500/10 border-sky-400/30 text-sky-300'
-                    : 'bg-sky-50 border-sky-200 text-[#0284c7] font-semibold'
-                }`}
-              >
-                <Terminal className="w-3 h-3 sm:w-3.5 sm:h-3.5 text-amber-500 flex-shrink-0" />
-                <span className="truncate">From Lab to Market • NBA · NAAC · IIC · NIRF Aligned</span>
-              </div>
-
               {/* Main headline with static part + typing effect */}
               <div className="reveal delay-1">
                 <h1
-                  className={`text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-extrabold tracking-tight leading-[1.2] ${
+                  className={`text-3xl sm:text-4xl lg:text-5xl font-extrabold tracking-tight leading-[1.15] text-balance ${
                     isDark ? 'text-white' : 'text-[#081c3b]'
                   }`}
                 >
                   Building Scalable Pipelines for Academia &amp; Beyond
                 </h1>
                 {/* Layout-locked row using CSS Grid so the typing animation never pushes or shifts content below */}
-                <div className="relative mt-1 grid items-center">
+                <div className="relative mt-2 grid items-center">
                   {/* Invisible placeholder of the longest phrase to reserve exact height across all viewports */}
                   <span
                     aria-hidden="true"
-                    className="col-start-1 row-start-1 invisible select-none pointer-events-none text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-extrabold tracking-tight leading-[1.2]"
+                    className="col-start-1 row-start-1 invisible select-none pointer-events-none text-xl sm:text-2xl lg:text-3xl font-bold tracking-tight leading-snug"
                   >
                     — From Research to Revenue.
                   </span>
                   <span
-                    className={`col-start-1 row-start-1 text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-extrabold tracking-tight leading-[1.2] ${
+                    className={`col-start-1 row-start-1 text-xl sm:text-2xl lg:text-3xl font-bold tracking-tight leading-snug ${
                       isDark
                         ? 'text-transparent bg-clip-text bg-gradient-to-r from-[#38bdf8] via-[#60a5fa] to-[#fbbf24] animate-gradient-text typing-cursor'
                         : 'text-transparent bg-clip-text bg-gradient-to-r from-[#0284c7] via-[#0369a1] to-[#d97706] animate-gradient-text typing-cursor'
@@ -183,15 +171,14 @@ export const NFHeroSection: React.FC<NFHeroSectionProps> = ({
               >
                 <div className="absolute top-0 left-0 bottom-0 w-1.5 bg-gradient-to-b from-[#fbbf24] via-[#38bdf8] to-[#0284c7]" />
                 <p
-                  className={`text-sm sm:text-base md:text-lg font-normal leading-relaxed pl-1.5 sm:pl-2 ${
+                  className={`text-sm sm:text-base md:text-lg font-normal leading-relaxed pl-1.5 sm:pl-2 text-pretty ${
                     isDark ? 'text-slate-200' : 'text-slate-700'
                   }`}
                 >
-                  A turnkey venture-building framework that translates academic research, student talent and faculty expertise into{' '}
+                  Partnering with institutions to transform academic research, student innovation, and faculty IP into{' '}
                   <strong className={isDark ? 'text-amber-300 font-semibold' : 'text-amber-700 font-bold'}>
-                    scalable, investable enterprises
-                  </strong>{' '}
-                  — engineered for higher education institutions, faculty, students and emerging founders.
+                    scalable, investable ventures
+                  </strong>.
                 </p>
               </div>
             </div>
@@ -200,16 +187,16 @@ export const NFHeroSection: React.FC<NFHeroSectionProps> = ({
             <div className="flex flex-col sm:flex-row flex-wrap items-stretch sm:items-center gap-3 pt-1 reveal delay-3">
               <button
                 onClick={() => onOpenApplication('student')}
-                className="relative group overflow-hidden px-5 sm:px-6 py-3 sm:py-3.5 rounded-xl font-black text-xs sm:text-sm text-white bg-gradient-to-r from-[#0284c7] via-[#0369a1] to-[#081c3b] hover:from-[#0ea5e9] hover:to-[#0284c7] shadow-xl shadow-sky-600/30 border border-sky-400/50 transition-all duration-300 transform hover:-translate-y-0.5 active:translate-y-0 flex items-center justify-center gap-2 animate-shimmer cursor-pointer btn-neon-blue"
+                className="relative group overflow-hidden px-5 sm:px-6 py-3 sm:py-3.5 rounded-xl font-black text-xs sm:text-sm text-white bg-gradient-to-r from-[#0284c7] via-[#0369a1] to-[#081c3b] hover:from-[#0ea5e9] hover:to-[#0284c7] shadow-xl shadow-sky-600/30 border border-sky-400/50 transition-all duration-300 transform hover:-translate-y-0.5 active:translate-y-0 flex items-center justify-center gap-2 animate-shimmer cursor-pointer btn-neon-blue min-h-11"
               >
-                <Rocket className="w-4 h-4 text-amber-300 group-hover:rotate-12 transition-transform" />
-                <span>Apply for Incubation</span>
-                <ArrowRight className="w-4 h-4 text-sky-200 group-hover:translate-x-1 transition-transform" />
+                <Rocket className="w-4 h-4 text-amber-300 group-hover:rotate-12 transition-transform flex-shrink-0" />
+                <span>Apply for Incubation Center</span>
+                <ArrowRight className="w-4 h-4 text-sky-200 group-hover:translate-x-1 transition-transform flex-shrink-0" />
               </button>
 
               <button
                 onClick={() => onOpenApplication('institutional')}
-                className="inline-flex items-center justify-center gap-2 px-4 sm:px-5 py-3 sm:py-3.5 rounded-xl font-bold text-xs sm:text-sm text-[#081c3b] bg-gradient-to-r from-[#fbbf24] via-[#f59e0b] to-[#d97706] hover:brightness-110 shadow-lg border border-amber-300 transition-all text-center cursor-pointer btn-neon-amber"
+                className="inline-flex items-center justify-center gap-2 px-4 sm:px-5 py-3 sm:py-3.5 rounded-xl font-bold text-xs sm:text-sm text-[#081c3b] bg-gradient-to-r from-[#fbbf24] via-[#f59e0b] to-[#d97706] hover:brightness-110 shadow-lg border border-amber-300 transition-all text-center cursor-pointer btn-neon-amber min-h-11"
               >
                 <ShieldCheck className="w-4 h-4 text-[#081c3b]" />
                 <span>Schedule Campus Assessment</span>
@@ -221,7 +208,7 @@ export const NFHeroSection: React.FC<NFHeroSectionProps> = ({
                   isDark ? 'text-amber-400 hover:text-amber-300' : 'text-amber-700 hover:text-amber-800'
                 }`}
               >
-                <span>Explore 3 Tracks</span>
+                <span>Explore Tracks</span>
                 <ChevronRight className="w-3.5 h-3.5" />
               </a>
             </div>
@@ -234,7 +221,7 @@ export const NFHeroSection: React.FC<NFHeroSectionProps> = ({
                 }`}
               >
                 <span className="w-2 h-2 rounded-full bg-amber-400" />
-                <span>THREE VENTURE ENGINES (FROM PROPOSAL)</span>
+                <span>THREE VENTURE ENGINES</span>
               </div>
               <div className="grid grid-cols-1 sm:grid-cols-3 gap-2.5 reveal-stagger">
                 {[
@@ -243,7 +230,7 @@ export const NFHeroSection: React.FC<NFHeroSectionProps> = ({
                     color: 'text-sky-500',
                     label: 'INCUBATE',
                     sub: 'Pre-incubation · Prototypes · Seed',
-                    desc: '3–6 month cohorts, hackathons, PoC micro-grants',
+                    desc: 'Cohorts, hackathons, PoC micro-grants',
                     cardClass: isDark ? 'border-sky-500/25 hover:border-sky-400/60' : 'border-slate-200 bg-white hover:border-sky-400 shadow-xs',
                   },
                   {
@@ -251,7 +238,7 @@ export const NFHeroSection: React.FC<NFHeroSectionProps> = ({
                     color: 'text-amber-500',
                     label: 'BUILD',
                     sub: 'MVP · Tech-for-Equity · GTM',
-                    desc: 'Venture build & scale-up with investor-ready traction',
+                    desc: 'MVP build, validation, and investor readiness',
                     cardClass: isDark ? 'border-amber-500/30 hover:border-amber-400/60' : 'border-amber-200 bg-amber-50/40 hover:border-amber-400 shadow-xs',
                     isGold: true,
                   },
@@ -260,7 +247,7 @@ export const NFHeroSection: React.FC<NFHeroSectionProps> = ({
                     color: 'text-emerald-500',
                     label: 'EMBED',
                     sub: 'Incubator-in-a-Box',
-                    desc: 'Turnkey campus setup, NIRF/IIC alignment, full handover',
+                    desc: 'Campus setup, NIRF/IIC alignment, handover',
                     cardClass: isDark ? 'border-emerald-500/30 hover:border-emerald-400/60' : 'border-emerald-200 bg-emerald-50/40 hover:border-emerald-400 shadow-xs',
                   },
                 ].map((engine, i) => {
@@ -276,7 +263,7 @@ export const NFHeroSection: React.FC<NFHeroSectionProps> = ({
                         <Icon className={`w-3.5 h-3.5 flex-shrink-0 ${engine.color}`} />
                         <span>{engine.label}</span>
                       </div>
-                      <div className={`text-[10px] font-bold mt-1 ${isDark ? 'text-amber-300' : 'text-amber-700'}`}>
+                    <div className={`text-[10px] font-bold mt-1 safe-wrap ${isDark ? 'text-amber-300' : 'text-amber-700'}`}>
                         {engine.sub}
                       </div>
                       <p className={`text-[10px] mt-0.5 leading-snug ${isDark ? 'text-slate-300' : 'text-slate-600'}`}>
@@ -285,31 +272,6 @@ export const NFHeroSection: React.FC<NFHeroSectionProps> = ({
                     </div>
                   );
                 })}
-              </div>
-            </div>
-
-            {/* Bottom Status Bar */}
-            <div
-              className={`flex flex-wrap items-center justify-between gap-2 p-2.5 rounded-xl border text-[11px] font-mono transition-colors reveal ${
-                isDark
-                  ? 'bg-slate-950/80 border-slate-800 text-slate-300'
-                  : 'bg-white border-slate-200 text-slate-700 shadow-xs'
-              }`}
-            >
-              <span className={isDark ? 'text-amber-300 font-bold' : 'text-amber-700 font-bold'}>
-                ● One hub. Three engines. Endless pipeline.
-              </span>
-              <div className={`flex items-center gap-3 ${isDark ? 'text-sky-400' : 'text-[#0284c7]'}`}>
-                <a href="https://www.ncfvs.in" target="_blank" rel="noreferrer" className="hover:underline hover-underline">
-                  www.ncfvs.in
-                </a>
-                <span>·</span>
-                <a
-                  href="tel:8379879846"
-                  className={`hover:underline font-bold hover-underline ${isDark ? 'text-amber-400' : 'text-amber-700'}`}
-                >
-                  +91 83798 79846
-                </a>
               </div>
             </div>
           </div>
@@ -391,7 +353,7 @@ export const NFHeroSection: React.FC<NFHeroSectionProps> = ({
                     >
                       <span className={isDark ? 'text-sky-300' : 'text-[#0284c7]'}>IDEA</span>
                       <ArrowRight className="w-3 h-3 sm:w-3.5 sm:h-3.5 text-amber-400" />
-                      <span className={isDark ? 'text-amber-400' : 'text-amber-600'}>TO IMPACT</span>
+                      <span className={isDark ? 'text-amber-400' : 'text-amber-600'}>IMPACT</span>
                     </div>
                   </div>
 

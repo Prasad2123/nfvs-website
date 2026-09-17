@@ -22,68 +22,68 @@ export const NFLabModal: React.FC<NFLabModalProps> = ({
 
   const labDetails = {
     AI: {
-      title: 'Artificial Intelligence & Machine Learning Lab',
+      title: 'AI & Machine Learning Lab',
       badge: 'AI & Data Science',
       icon: Cpu,
       color: 'from-blue-600 to-indigo-700',
       description:
-        'High-performance GPU computing clusters, model training workstations, and cloud sandbox environments designed for accelerating deep-tech AI algorithms, computer vision, NLP, and predictive analytics models.',
+        'GPU clusters, model training workstations, and cloud sandboxes for deep-tech AI algorithms, computer vision, NLP, and predictive analytics.',
       equipment: [
-        'Dedicated NVIDIA RTX & A100 GPU compute instances',
-        'Pre-configured PyTorch, TensorFlow, TensorRT runtime stacks',
-        'Edge AI accelerators (NVIDIA Jetson Orin, Google Coral TPUs)',
-        'Enterprise dataset labeling, synthetic data generation, and vector DB setups',
-        'Model inference optimization and edge deployment pipelines',
+        'NVIDIA RTX & A100 GPU compute instances',
+        'Pre-configured PyTorch, TensorFlow & TensorRT stacks',
+        'Edge AI accelerators (Jetson Orin & Coral TPUs)',
+        'Dataset labeling & synthetic data generation pipelines',
+        'Model inference optimization & deployment testbeds',
       ],
-      deliverables: 'From academic algorithmic papers to real-time scalable AI products and enterprise APIs.',
+      deliverables: 'Production-ready AI models, inference pipelines & enterprise APIs.',
     },
     IoT: {
-      title: 'Internet of Things & Connected Systems Lab',
+      title: 'IoT & Connected Systems Lab',
       badge: 'IoT & Smart Sensors',
       icon: Wifi,
       color: 'from-cyan-600 to-blue-700',
       description:
-        'Comprehensive testing rigs for wireless protocols, smart sensor arrays, firmware development tools, and gateway testing setups for industrial, agricultural, and smart healthcare IoT products.',
+        'Testing rigs for wireless protocols, smart sensor arrays, firmware tools, and gateways for industrial and healthcare IoT products.',
       equipment: [
-        'Multi-protocol test benches: LoRaWAN, BLE 5.3, Zigbee, WiFi 6, NB-IoT',
+        'Multi-protocol test benches: LoRaWAN, BLE 5.3, Zigbee, WiFi 6',
         'High-precision digital oscilloscopes & logic analyzers',
-        'Ultra-low power testing and energy harvesting simulator kits',
-        'Industrial sensor interfacing rigs (pressure, thermal, optical, chemical)',
-        'Secure cloud MQTT broker and remote OTA firmware testbeds',
+        'Ultra-low power testing & energy harvesting simulators',
+        'Industrial sensor interfacing rigs (thermal, optical, pressure)',
+        'Secure cloud MQTT broker & OTA firmware testbeds',
       ],
-      deliverables: 'Fully tested hardware nodes ready for field pilots and mass PCB fabrication.',
+      deliverables: 'Field-tested hardware nodes ready for pilots and mass PCB fabrication.',
     },
     Robotics: {
-      title: 'Robotics & Mechatronics Prototyping Lab',
+      title: 'Robotics & Automation Lab',
       badge: 'Robotics & Automation',
       icon: Bot,
       color: 'from-amber-600 to-orange-700',
       description:
-        'Rapid physical prototyping suite with multi-axis CNC machines, 3D printing farm, robotic arm test cells, actuator calibration rigs, and ROS2 simulation environments.',
+        'Rapid physical prototyping suite with multi-axis CNC machines, 3D printing farm, robotic arm test cells, and ROS2 simulation environments.',
       equipment: [
-        '6-DOF industrial robotic arms and collaborative robot (Cobot) cells',
-        'High-precision SLA & FDM 3D printing farm for custom end-effectors',
-        'Motor drive test benches (BLDC, Stepper, Servo drivers with encoder feedback)',
-        'LiDAR, ultrasonic, and stereo-depth vision perception rigs',
-        'ROS2 (Robot Operating System) simulation & kinematics modeling rigs',
+        '6-DOF industrial robotic arms & collaborative robot (Cobot) cells',
+        'High-precision SLA & FDM 3D printing farm',
+        'Motor drive test benches (BLDC, Stepper, Servo with feedback)',
+        'LiDAR, ultrasonic & stereo-depth vision rigs',
+        'ROS2 simulation & kinematics modeling environments',
       ],
-      deliverables: 'Functional electromechanical MVPs tested for industrial and commercial reliability.',
+      deliverables: 'Functional electromechanical MVPs tested for industrial reliability.',
     },
     Electronics: {
-      title: 'Electronics & Embedded Hardware Systems Lab',
+      title: 'Electronics & Embedded Systems Lab',
       badge: 'Electronics & PCB Design',
       icon: Zap,
       color: 'from-emerald-600 to-teal-700',
       description:
-        'Clean-room class electronics development station for schematic design, multi-layer PCB rapid prototyping, SMD pick-and-place soldering, and electromagnetic compliance testing.',
+        'Electronics development station for schematic design, multi-layer PCB prototyping, SMD soldering, and compliance testing.',
       equipment: [
-        'SMD rework stations, reflow ovens, and thermal imaging cameras',
+        'SMD rework stations, reflow ovens & thermal imaging',
         'Automated optical inspection (AOI) & digital microscopes',
-        'Multi-layer PCB prototyping milling machines for same-day board fab',
-        'Spectrum analyzers and signal generators up to 6 GHz',
-        'Standard compliance and thermal shock reliability chambers',
+        'Multi-layer PCB prototyping milling machines',
+        'Spectrum analyzers & signal generators up to 6 GHz',
+        'Standard compliance & thermal reliability test chambers',
       ],
-      deliverables: 'Production-ready Gerber files, BOM optimization, and CE/FCC compliance readiness.',
+      deliverables: 'Production-ready Gerber files, BOM optimization & compliance readiness.',
     },
   };
 
@@ -91,15 +91,15 @@ export const NFLabModal: React.FC<NFLabModalProps> = ({
   const Icon = current.icon;
 
   return (
-    <div className="fixed inset-0 z-50 flex items-center justify-center p-3 sm:p-4 bg-slate-950/80 backdrop-blur-md animate-fadeIn">
-      <div className={`relative w-full max-w-3xl rounded-2xl sm:rounded-3xl shadow-2xl overflow-hidden max-h-[92vh] flex flex-col transition-colors duration-300 ${
+    <div className="fixed inset-0 z-50 flex items-center justify-center p-2 sm:p-4 bg-slate-950/80 backdrop-blur-md animate-fadeIn">
+      <div className={`relative w-full max-w-3xl rounded-2xl sm:rounded-3xl shadow-2xl overflow-hidden max-h-[94vh] flex flex-col transition-colors duration-300 ${
         isDark
           ? 'bg-[#091528] border border-sky-500/40 text-white'
           : 'bg-white border border-slate-200 text-slate-900'
       }`}>
         
         {/* Header */}
-        <div className={`bg-gradient-to-r ${current.color} p-4 sm:p-6 relative transition-colors duration-300 text-white`}>
+        <div className={`bg-gradient-to-r ${current.color} p-4 sm:p-6 pr-14 sm:pr-16 relative transition-colors duration-300 text-white`}>
           <button
             onClick={onClose}
             className="absolute top-4 sm:top-5 right-4 sm:right-5 text-white/80 hover:text-white bg-black/20 hover:bg-black/40 p-1.5 sm:p-2 rounded-full transition-colors cursor-pointer"
@@ -112,9 +112,9 @@ export const NFLabModal: React.FC<NFLabModalProps> = ({
             <Icon className="w-3.5 h-3.5" />
             SPECIALIZED LAB INFRASTRUCTURE
           </div>
-          <h2 className="text-xl sm:text-2xl font-black tracking-tight">{current.title}</h2>
-          <p className="text-xs sm:text-sm text-white/90 mt-1 max-w-xl">
-            NF Venture Studio provides state-of-the-art access to transform laboratory prototypes into industrial-grade ventures.
+          <h2 className="text-xl sm:text-2xl font-black tracking-tight text-balance">{current.title}</h2>
+          <p className="text-xs sm:text-sm text-white/90 mt-1 max-w-xl text-pretty">
+            NF Venture Studio provides lab access to turn prototypes into industrial-grade ventures.
           </p>
         </div>
 
@@ -176,7 +176,7 @@ export const NFLabModal: React.FC<NFLabModalProps> = ({
                   }`}
                 >
                   <CheckCircle2 className={`w-4 h-4 flex-shrink-0 mt-0.5 ${isDark ? 'text-sky-400' : 'text-sky-600'}`} />
-                  <span>{item}</span>
+              <span className="safe-wrap">{item}</span>
                 </div>
               ))}
             </div>
@@ -204,7 +204,7 @@ export const NFLabModal: React.FC<NFLabModalProps> = ({
               onClose();
               onApply(activeDomain);
             }}
-            className="w-full sm:w-auto inline-flex items-center justify-center gap-2 px-5 py-2 text-xs font-black uppercase tracking-wider text-white bg-gradient-to-r from-sky-500 to-sky-600 hover:from-sky-400 hover:to-sky-500 rounded-xl transition-all shadow-md cursor-pointer"
+            className="w-full sm:w-auto inline-flex items-center justify-center gap-2 px-5 py-2 text-xs font-black uppercase tracking-wide text-white bg-gradient-to-r from-sky-500 to-sky-600 hover:from-sky-400 hover:to-sky-500 rounded-xl transition-all shadow-md cursor-pointer text-center"
           >
             Apply for {activeDomain} Lab Access
             <ArrowRight className="w-3.5 h-3.5" />

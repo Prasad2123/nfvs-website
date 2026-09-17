@@ -21,9 +21,9 @@ export const NFApplicationModal: React.FC<NFApplicationModalProps> = ({
     phone: '',
     institution: '',
     projectTitle: '',
-    domain: 'AI',
+    domain: '',
     description: '',
-    stage: 'Ideation',
+    stage: '',
   });
   const [isSubmitted, setIsSubmitted] = useState(false);
 
@@ -62,15 +62,15 @@ export const NFApplicationModal: React.FC<NFApplicationModalProps> = ({
   ];
 
   return (
-    <div className="fixed inset-0 z-50 flex items-center justify-center p-3 sm:p-4 bg-slate-950/80 backdrop-blur-md animate-fadeIn">
+    <div className="fixed inset-0 z-50 flex items-center justify-center p-2 sm:p-4 bg-slate-950/80 backdrop-blur-md animate-fadeIn">
       <div
-        className={`relative w-full max-w-2xl rounded-2xl sm:rounded-3xl shadow-2xl border overflow-hidden max-h-[92vh] flex flex-col transition-colors ${
+        className={`relative w-full max-w-2xl rounded-2xl sm:rounded-3xl shadow-2xl border overflow-hidden max-h-[94vh] flex flex-col transition-colors ${
           isDark ? 'bg-[#091528] text-white border-sky-500/40' : 'bg-white text-[#081c3b] border-slate-200'
         }`}
       >
         {/* Header */}
         <div
-          className={`p-4 sm:p-6 relative border-b transition-colors ${
+          className={`p-4 sm:p-6 pr-14 sm:pr-16 relative border-b transition-colors ${
             isDark
               ? 'bg-gradient-to-r from-[#060f1e] via-[#0b1e3c] to-[#060f1e] border-slate-800'
               : 'bg-gradient-to-r from-slate-50 via-sky-50/70 to-slate-50 border-slate-200'
@@ -98,7 +98,7 @@ export const NFApplicationModal: React.FC<NFApplicationModalProps> = ({
             <Sparkles className="w-3.5 h-3.5 text-amber-500" />
             INCUBATION PROGRAM APPLICATION
           </div>
-          <h2 className={`text-xl sm:text-2xl font-black tracking-tight font-sans ${isDark ? 'text-white' : 'text-[#081c3b]'}`}>
+          <h2 className={`text-xl sm:text-2xl font-black tracking-tight font-sans text-balance ${isDark ? 'text-white' : 'text-[#081c3b]'}`}>
             Join NF Venture Studio
           </h2>
           <p className={`text-xs sm:text-sm mt-0.5 ${isDark ? 'text-sky-300' : 'text-[#0284c7]'}`}>
@@ -156,7 +156,7 @@ export const NFApplicationModal: React.FC<NFApplicationModalProps> = ({
                         type="button"
                         key={t.id}
                         onClick={() => setSelectedTrack(t.id)}
-                        className={`flex items-center gap-2.5 p-2.5 sm:p-3 rounded-xl border text-left transition-all cursor-pointer ${
+                        className={`flex items-center gap-2.5 p-2.5 sm:p-3 rounded-xl border text-left transition-all cursor-pointer min-w-0 ${
                           isSelected
                             ? `${t.color} ring-2 ring-sky-400 shadow-md font-bold`
                             : isDark
@@ -171,7 +171,7 @@ export const NFApplicationModal: React.FC<NFApplicationModalProps> = ({
                         }`}>
                           <Icon className="w-4 h-4" />
                         </div>
-                        <span className="text-xs font-medium">{t.name}</span>
+                        <span className="text-xs font-medium safe-wrap">{t.name}</span>
                       </button>
                     );
                   })}
@@ -181,13 +181,12 @@ export const NFApplicationModal: React.FC<NFApplicationModalProps> = ({
               {/* Form Inputs */}
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 sm:gap-4">
                 <div>
-                  <label className={`block text-xs font-medium mb-1 ${isDark ? 'text-slate-300' : 'text-slate-700'}`}>
+                  <label className={`block text-xs font-semibold mb-1.5 ${isDark ? 'text-slate-200' : 'text-slate-800'}`}>
                     Full Name *
                   </label>
                   <input
                     type="text"
                     required
-                    placeholder="e.g. Dr. Rajesh Kumar / Ananya Sharma"
                     value={formData.fullName}
                     onChange={(e) => setFormData({ ...formData, fullName: e.target.value })}
                     className={`w-full px-3 py-2 text-xs sm:text-sm rounded-lg border focus:outline-hidden focus:ring-2 focus:ring-sky-400 ${
@@ -199,13 +198,12 @@ export const NFApplicationModal: React.FC<NFApplicationModalProps> = ({
                 </div>
 
                 <div>
-                  <label className={`block text-xs font-medium mb-1 ${isDark ? 'text-slate-300' : 'text-slate-700'}`}>
+                  <label className={`block text-xs font-semibold mb-1.5 ${isDark ? 'text-slate-200' : 'text-slate-800'}`}>
                     Email Address *
                   </label>
                   <input
                     type="email"
                     required
-                    placeholder="e.g. innovator@university.edu"
                     value={formData.email}
                     onChange={(e) => setFormData({ ...formData, email: e.target.value })}
                     className={`w-full px-3 py-2 text-xs sm:text-sm rounded-lg border focus:outline-hidden focus:ring-2 focus:ring-sky-400 ${
@@ -217,13 +215,12 @@ export const NFApplicationModal: React.FC<NFApplicationModalProps> = ({
                 </div>
 
                 <div>
-                  <label className={`block text-xs font-medium mb-1 ${isDark ? 'text-slate-300' : 'text-slate-700'}`}>
+                  <label className={`block text-xs font-semibold mb-1.5 ${isDark ? 'text-slate-200' : 'text-slate-800'}`}>
                     Contact Phone / WhatsApp *
                   </label>
                   <input
                     type="tel"
                     required
-                    placeholder="e.g. 9876543210"
                     value={formData.phone}
                     onChange={(e) => setFormData({ ...formData, phone: e.target.value })}
                     className={`w-full px-3 py-2 text-xs sm:text-sm rounded-lg border focus:outline-hidden focus:ring-2 focus:ring-sky-400 ${
@@ -235,13 +232,12 @@ export const NFApplicationModal: React.FC<NFApplicationModalProps> = ({
                 </div>
 
                 <div>
-                  <label className={`block text-xs font-medium mb-1 ${isDark ? 'text-slate-300' : 'text-slate-700'}`}>
+                  <label className={`block text-xs font-semibold mb-1.5 ${isDark ? 'text-slate-200' : 'text-slate-800'}`}>
                     University / College / Organization *
                   </label>
                   <input
                     type="text"
                     required
-                    placeholder="e.g. National Institute of Tech"
                     value={formData.institution}
                     onChange={(e) => setFormData({ ...formData, institution: e.target.value })}
                     className={`w-full px-3 py-2 text-xs sm:text-sm rounded-lg border focus:outline-hidden focus:ring-2 focus:ring-sky-400 ${
@@ -255,10 +251,11 @@ export const NFApplicationModal: React.FC<NFApplicationModalProps> = ({
 
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 sm:gap-4">
                 <div>
-                  <label className={`block text-xs font-medium mb-1 ${isDark ? 'text-slate-300' : 'text-slate-700'}`}>
+                  <label className={`block text-xs font-semibold mb-1.5 ${isDark ? 'text-slate-200' : 'text-slate-800'}`}>
                     Focus Technology Domain *
                   </label>
                   <select
+                    required
                     value={formData.domain}
                     onChange={(e) => setFormData({ ...formData, domain: e.target.value })}
                     className={`w-full px-3 py-2 text-xs sm:text-sm rounded-lg border focus:outline-hidden focus:ring-2 focus:ring-sky-400 ${
@@ -267,6 +264,7 @@ export const NFApplicationModal: React.FC<NFApplicationModalProps> = ({
                         : 'bg-slate-50 border-slate-300 text-slate-900'
                     }`}
                   >
+                    <option value="">Select Technology Domain</option>
                     <option value="AI">AI (Artificial Intelligence / ML)</option>
                     <option value="IoT">IoT (Internet of Things & Embedded)</option>
                     <option value="Robotics">Robotics & Automation</option>
@@ -277,10 +275,11 @@ export const NFApplicationModal: React.FC<NFApplicationModalProps> = ({
                 </div>
 
                 <div>
-                  <label className={`block text-xs font-medium mb-1 ${isDark ? 'text-slate-300' : 'text-slate-700'}`}>
+                  <label className={`block text-xs font-semibold mb-1.5 ${isDark ? 'text-slate-200' : 'text-slate-800'}`}>
                     Current Stage *
                   </label>
                   <select
+                    required
                     value={formData.stage}
                     onChange={(e) => setFormData({ ...formData, stage: e.target.value })}
                     className={`w-full px-3 py-2 text-xs sm:text-sm rounded-lg border focus:outline-hidden focus:ring-2 focus:ring-sky-400 ${
@@ -289,6 +288,7 @@ export const NFApplicationModal: React.FC<NFApplicationModalProps> = ({
                         : 'bg-slate-50 border-slate-300 text-slate-900'
                     }`}
                   >
+                    <option value="">Select Current Stage</option>
                     <option value="Ideation">Ideation / Concept</option>
                     <option value="Prototype">Working Prototype / Lab Demo</option>
                     <option value="Patented">Patented / Research Paper</option>
@@ -299,12 +299,11 @@ export const NFApplicationModal: React.FC<NFApplicationModalProps> = ({
               </div>
 
               <div>
-                <label className={`block text-xs font-medium mb-1 ${isDark ? 'text-slate-300' : 'text-slate-700'}`}>
+                <label className={`block text-xs font-semibold mb-1.5 ${isDark ? 'text-slate-200' : 'text-slate-800'}`}>
                   Brief Idea / Project Overview
                 </label>
                 <textarea
-                  rows={2}
-                  placeholder="Tell us briefly about your venture idea, research patent, or campus requirements..."
+                  rows={3}
                   value={formData.description}
                   onChange={(e) => setFormData({ ...formData, description: e.target.value })}
                   className={`w-full px-3 py-2 text-xs sm:text-sm rounded-lg border focus:outline-hidden focus:ring-2 focus:ring-sky-400 resize-none ${
@@ -336,7 +335,7 @@ export const NFApplicationModal: React.FC<NFApplicationModalProps> = ({
                   </button>
                   <button
                     type="submit"
-                    className="flex-1 sm:flex-none inline-flex items-center justify-center gap-2 px-5 py-2 text-xs font-black uppercase tracking-wider text-white bg-gradient-to-r from-sky-500 to-sky-600 hover:from-sky-400 hover:to-sky-500 rounded-lg shadow-md transition-all cursor-pointer"
+                    className="flex-1 sm:flex-none inline-flex items-center justify-center gap-2 px-5 py-2 text-xs font-black uppercase tracking-wide text-white bg-gradient-to-r from-sky-500 to-sky-600 hover:from-sky-400 hover:to-sky-500 rounded-lg shadow-md transition-all cursor-pointer text-center"
                   >
                     <Send className="w-3.5 h-3.5" />
                     Submit Application
