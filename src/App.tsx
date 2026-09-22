@@ -24,6 +24,8 @@ import ServiceCallFormPage from './pages/service-calls/ServiceCallFormPage';
 import ServiceCallDetailPage from './pages/service-calls/ServiceCallDetailPage';
 
 import { NFVentureStudioPage } from './pages/NFVentureStudioPage';
+import { NFAboutPage } from './pages/NFAboutPage';
+import { NFTeamPage } from './pages/NFTeamPage';
 
 // Settings, Backup, Users, Calendar, Reports
 import SettingsPage from './pages/settings/SettingsPage';
@@ -47,6 +49,10 @@ function App() {
         <Route path="/" element={<NFVentureStudioPage />} />
         <Route path="/nf-venture-studio" element={<NFVentureStudioPage />} />
         <Route path="/studio" element={<NFVentureStudioPage />} />
+        <Route path="/about" element={<NFAboutPage />} />
+        <Route path="/about-us" element={<NFAboutPage />} />
+        <Route path="/team" element={<NFTeamPage />} />
+        <Route path="/our-team" element={<NFTeamPage />} />
 
         {/* Management & Dashboard System */}
         <Route path="/login" element={<LoginPage />} />

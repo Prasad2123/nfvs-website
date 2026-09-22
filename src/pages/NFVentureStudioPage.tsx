@@ -1,4 +1,5 @@
 import React, { useState, useEffect, useRef } from 'react';
+import { useLocation } from 'react-router-dom';
 import { NFNavbar } from '../components/nf/NFNavbar';
 import { NFHeroSection } from '../components/nf/NFHeroSection';
 import { NFTracksSection } from '../components/nf/NFTracksSection';
@@ -24,9 +25,22 @@ export const NFVentureStudioPage: React.FC = () => {
   const [showScrollTop, setShowScrollTop] = useState(false);
   const [scrollProgress, setScrollProgress] = useState(0);
 
+  const location = useLocation();
+
   // Scroll reveal hooks
   useScrollReveal();
   useCountUp();
+
+  useEffect(() => {
+    if (location.hash) {
+      const element = document.querySelector(location.hash);
+      if (element) {
+        setTimeout(() => {
+          element.scrollIntoView({ behavior: 'smooth' });
+        }, 150);
+      }
+    }
+  }, [location.hash]);
 
   useEffect(() => {
     localStorage.setItem('nf-theme', theme);
