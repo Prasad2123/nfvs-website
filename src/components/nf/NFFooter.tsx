@@ -55,10 +55,11 @@ export const NFFooter: React.FC<NFFooterProps> = ({
       } else {
         navigate('/');
       }
-    } else if (href === '#contact') {
-      const el = document.getElementById('contact');
-      if (el) {
-        el.scrollIntoView({ behavior: 'smooth' });
+    } else if (href === '/contact' || href === '#contact') {
+      if (location.pathname === '/contact' || location.pathname === '/contact-us') {
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+      } else {
+        navigate('/contact');
       }
     } else {
       navigate(href);
@@ -171,7 +172,7 @@ export const NFFooter: React.FC<NFFooterProps> = ({
               <li>
                 <button
                   type="button"
-                  onClick={() => handleLinkClick('#contact')}
+                  onClick={() => handleLinkClick('/contact')}
                   className={`group flex items-center gap-2 transition-colors cursor-pointer text-left ${
                     isDark ? 'text-slate-300 hover:text-white' : 'text-slate-600 hover:text-slate-900'
                   }`}

@@ -39,8 +39,10 @@ export const NFVentureStudioPage: React.FC = () => {
           element.scrollIntoView({ behavior: 'smooth' });
         }, 150);
       }
+    } else {
+      window.scrollTo(0, 0);
     }
-  }, [location.hash]);
+  }, [location.hash, location.pathname]);
 
   useEffect(() => {
     localStorage.setItem('nf-theme', theme);

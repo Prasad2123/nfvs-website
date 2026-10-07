@@ -7,18 +7,27 @@ export function useScrollReveal() {
         entries.forEach((entry) => {
           if (entry.isIntersecting) {
             entry.target.classList.add('in-view');
+            (entry.target as HTMLElement).dataset.revealed = 'true';
           }
         });
       },
       {
-        threshold: 0.1,
-        rootMargin: '0px 0px -40px 0px',
+        threshold: 0.01,
+        rootMargin: '0px 0px 60px 0px',
       }
     );
 
-    // Observe all reveal elements
+    // Observe all reveal elements and immediately reveal any in the viewport on mount
     const revealEls = document.querySelectorAll('.reveal, .reveal-stagger');
-    revealEls.forEach((el) => observer.observe(el));
+    const vh = window.innerHeight;
+    revealEls.forEach((el) => {
+      const rect = el.getBoundingClientRect();
+      if (rect.top < vh && rect.bottom > 0) {
+        el.classList.add('in-view');
+        (el as HTMLElement).dataset.revealed = 'true';
+      }
+      observer.observe(el);
+    });
 
     return () => observer.disconnect();
   }, []);

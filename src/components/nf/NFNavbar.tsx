@@ -36,6 +36,7 @@ export const NFNavbar: React.FC<NFNavbarProps> = ({
   const location = useLocation();
   const isAboutPage = location.pathname === '/about' || location.pathname === '/about-us';
   const isTeamPage = location.pathname === '/team' || location.pathname === '/our-team';
+  const isContactPage = location.pathname === '/contact' || location.pathname === '/contact-us';
   const isHomePage = location.pathname === '/' || location.pathname === '/nf-venture-studio' || location.pathname === '/studio';
 
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
@@ -116,11 +117,11 @@ export const NFNavbar: React.FC<NFNavbarProps> = ({
   const mainNavItems = [
     { name: 'About Us', href: '/about', icon: Info, tooltip: 'About NF Venture Studio & Mission' },
     { name: 'Our Team', href: '/team', icon: Users, tooltip: 'Our Leadership & Venture Team' },
-    { name: 'Contact', href: '#contact', icon: MessageSquare, tooltip: 'Contact & Executive Office' },
+    { name: 'Contact', href: '/contact', icon: MessageSquare, tooltip: 'Contact & Executive Office' },
   ];
 
   const handleNavClick = (href: string) => {
-    if (href === '/about' || href === '#about') {
+    if (href === '/about' || href === '/about-us' || href === '#about') {
       if (!isAboutPage) {
         navigate('/about');
       } else {
@@ -132,6 +133,15 @@ export const NFNavbar: React.FC<NFNavbarProps> = ({
     if (href === '/team' || href === '/our-team') {
       if (!isTeamPage) {
         navigate('/team');
+      } else {
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+      }
+      return;
+    }
+
+    if (href === '/contact' || href === '/contact-us' || href === '#contact') {
+      if (!isContactPage) {
+        navigate('/contact');
       } else {
         window.scrollTo({ top: 0, behavior: 'smooth' });
       }
@@ -367,7 +377,7 @@ export const NFNavbar: React.FC<NFNavbarProps> = ({
               const Icon = item.icon;
               const isActive = (item.name === 'About Us' && isAboutPage) ||
                                (item.name === 'Our Team' && isTeamPage) ||
-                               (item.name === 'Contact' && activeSection === 'contact' && isHomePage);
+                               (item.name === 'Contact' && isContactPage);
               return (
                 <button
                   type="button"
@@ -553,7 +563,7 @@ export const NFNavbar: React.FC<NFNavbarProps> = ({
               const Icon = item.icon;
               const isItemActive = (item.name === 'About Us' && isAboutPage) ||
                                   (item.name === 'Our Team' && isTeamPage) ||
-                                  (item.name === 'Contact' && activeSection === 'contact' && isHomePage);
+                                  (item.name === 'Contact' && isContactPage);
               return (
                 <button
                   type="button"

@@ -164,22 +164,24 @@ export const NFHeroSection: React.FC<NFHeroSectionProps> = ({
               </div>
 
               {/* Strapline inside High-Tech Capsule */}
-              <div
-                className={`p-4 sm:p-5 rounded-2xl glass-card border shadow-xl relative overflow-hidden group reveal delay-2 ${
-                  isDark ? 'border-sky-500/30' : 'border-slate-200 bg-white'
-                }`}
-              >
-                <div className="absolute top-0 left-0 bottom-0 w-1.5 bg-gradient-to-b from-[#fbbf24] via-[#38bdf8] to-[#0284c7]" />
-                <p
-                  className={`text-sm sm:text-base md:text-lg font-normal leading-relaxed pl-1.5 sm:pl-2 text-pretty ${
-                    isDark ? 'text-slate-200' : 'text-slate-700'
+              <div className="reveal delay-2">
+                <div
+                  className={`p-4 sm:p-5 rounded-2xl glass-card border shadow-xl relative overflow-hidden group ${
+                    isDark ? 'border-sky-500/30' : 'border-slate-200 bg-white'
                   }`}
                 >
-                  Partnering with institutions to transform academic research, student innovation, and faculty IP into{' '}
-                  <strong className={isDark ? 'text-amber-300 font-semibold' : 'text-amber-700 font-bold'}>
-                    scalable, investable ventures
-                  </strong>.
-                </p>
+                  <div className="absolute top-0 left-0 bottom-0 w-1.5 bg-gradient-to-b from-[#fbbf24] via-[#38bdf8] to-[#0284c7]" />
+                  <p
+                    className={`text-sm sm:text-base md:text-lg font-normal leading-relaxed pl-1.5 sm:pl-2 text-pretty ${
+                      isDark ? 'text-slate-200' : 'text-slate-700'
+                    }`}
+                  >
+                    Partnering with institutions to transform academic research, student innovation, and faculty IP into{' '}
+                    <strong className={isDark ? 'text-amber-300 font-semibold' : 'text-amber-700 font-bold'}>
+                      scalable, investable ventures
+                    </strong>.
+                  </p>
+                </div>
               </div>
             </div>
 

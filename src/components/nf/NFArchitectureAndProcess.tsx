@@ -1,6 +1,6 @@
 import React, { useEffect, useRef, useState } from 'react';
 import { NFLogo } from './NFLogo';
-import { ClipboardCheck, Network, Cpu, Rocket, ArrowRight, Activity, Terminal, Shield, CheckCircle, Play, Pause, Sparkles, Check } from 'lucide-react';
+import { ClipboardCheck, Network, Cpu, Rocket, ArrowRight, Activity, Terminal, Shield, CheckCircle, Play, Pause, RotateCcw, Sparkles, Check } from 'lucide-react';
 
 interface NFArchitectureAndProcessProps {
   onOpenApplication: (track?: string) => void;
@@ -15,11 +15,23 @@ export const NFArchitectureAndProcess: React.FC<NFArchitectureAndProcessProps> =
 }) => {
   const [activeStage, setActiveStage] = useState(0);
   const [scrollProgress, setScrollProgress] = useState(25);
-  const [isManualSelection, setIsManualSelection] = useState(false);
   const [isPlaying, setIsPlaying] = useState(false);
-  const manualTimeoutRef = useRef<ReturnType<typeof setTimeout> | null>(null);
+  const [isFinished, setIsFinished] = useState(false);
   const playIntervalRef = useRef<ReturnType<typeof setInterval> | null>(null);
   const processRef = useRef<HTMLDivElement>(null);
+
+  const clearPlayInterval = () => {
+    if (playIntervalRef.current) {
+      clearInterval(playIntervalRef.current);
+      playIntervalRef.current = null;
+    }
+  };
+
+  useEffect(() => {
+    return () => {
+      clearPlayInterval();
+    };
+  }, []);
 
   const stages = [
     {
@@ -29,8 +41,9 @@ export const NFArchitectureAndProcess: React.FC<NFArchitectureAndProcessProps> =
       month: 'M1',
       tag: 'MoU & Audit',
       badge: 'Month 1',
+      progress: 25,
       tagColor: isDark ? 'text-sky-300 bg-sky-500/20 border border-sky-400/30' : 'text-[#0284c7] bg-sky-50 border border-sky-200',
-      borderActive: isDark ? 'border-sky-400 shadow-lg shadow-sky-500/20 ring-1 ring-sky-400/40 bg-[#0c1f3d]' : 'border-[#0284c7] shadow-md shadow-sky-200/80 ring-1 ring-[#0284c7]/40 bg-white',
+      borderActive: isDark ? 'border-sky-400 shadow-lg shadow-sky-500/20 ring-2 ring-sky-400/40 bg-[#0c1f3d]' : 'border-[#0284c7] shadow-md shadow-sky-200/80 ring-2 ring-[#0284c7]/40 bg-sky-50/50',
       borderIdle: isDark ? 'bg-slate-900/70 border-slate-800 hover:border-sky-400/50' : 'bg-white/80 border-slate-200 hover:border-sky-400/50',
       iconBg: isDark ? 'bg-sky-500/20 text-sky-400 border-sky-400/40' : 'bg-sky-100 text-[#0284c7] border-sky-300',
       titleColor: isDark ? 'text-sky-300' : 'text-[#0284c7]',
@@ -50,8 +63,9 @@ export const NFArchitectureAndProcess: React.FC<NFArchitectureAndProcessProps> =
       month: 'M2',
       tag: 'Board & IP',
       badge: 'Month 2',
+      progress: 50,
       tagColor: isDark ? 'text-amber-300 bg-amber-400/20 border border-amber-400/30' : 'text-amber-800 bg-amber-50 border border-amber-200',
-      borderActive: isDark ? 'border-amber-400 shadow-lg shadow-amber-500/20 ring-1 ring-amber-400/40 bg-[#1f1a0d]' : 'border-amber-500 shadow-md shadow-amber-200/80 ring-1 ring-amber-400/40 bg-white',
+      borderActive: isDark ? 'border-amber-400 shadow-lg shadow-amber-500/20 ring-2 ring-amber-400/40 bg-[#1f1a0d]' : 'border-amber-500 shadow-md shadow-amber-200/80 ring-2 ring-amber-400/40 bg-amber-50/50',
       borderIdle: isDark ? 'bg-slate-900/70 border-slate-800 hover:border-amber-400/50' : 'bg-white/80 border-slate-200 hover:border-amber-400/50',
       iconBg: isDark ? 'bg-amber-500/20 text-amber-400 border-amber-400/40' : 'bg-amber-100 text-amber-800 border-amber-300',
       titleColor: isDark ? 'text-amber-300' : 'text-amber-800',
@@ -71,8 +85,9 @@ export const NFArchitectureAndProcess: React.FC<NFArchitectureAndProcessProps> =
       month: 'M3-4',
       tag: 'Space & ERP',
       badge: 'Months 3–4',
+      progress: 75,
       tagColor: isDark ? 'text-sky-300 bg-sky-500/20 border border-sky-400/30' : 'text-[#0284c7] bg-sky-50 border border-sky-200',
-      borderActive: isDark ? 'border-sky-400 shadow-lg shadow-sky-500/20 ring-1 ring-sky-400/40 bg-[#0c1f3d]' : 'border-[#0284c7] shadow-md shadow-sky-200/80 ring-1 ring-[#0284c7]/40 bg-white',
+      borderActive: isDark ? 'border-sky-400 shadow-lg shadow-sky-500/20 ring-2 ring-sky-400/40 bg-[#0c1f3d]' : 'border-[#0284c7] shadow-md shadow-sky-200/80 ring-2 ring-[#0284c7]/40 bg-sky-50/50',
       borderIdle: isDark ? 'bg-slate-900/70 border-slate-800 hover:border-sky-400/50' : 'bg-white/80 border-slate-200 hover:border-sky-400/50',
       iconBg: isDark ? 'bg-sky-500/20 text-sky-400 border-sky-400/40' : 'bg-sky-100 text-[#0284c7] border-sky-300',
       titleColor: isDark ? 'text-sky-300' : 'text-[#0284c7]',
@@ -92,8 +107,9 @@ export const NFArchitectureAndProcess: React.FC<NFArchitectureAndProcessProps> =
       month: 'M5-12',
       tag: 'Self-Sustaining',
       badge: 'Months 5–12+',
+      progress: 100,
       tagColor: isDark ? 'text-emerald-300 bg-emerald-500/20 border border-emerald-400/30' : 'text-emerald-800 bg-emerald-50 border border-emerald-200',
-      borderActive: isDark ? 'border-emerald-400 shadow-lg shadow-emerald-500/20 ring-1 ring-emerald-400/40 bg-[#0d2319]' : 'border-emerald-500 shadow-md shadow-emerald-200/80 ring-1 ring-emerald-400/40 bg-white',
+      borderActive: isDark ? 'border-emerald-400 shadow-lg shadow-emerald-500/20 ring-2 ring-emerald-400/40 bg-[#0d2319]' : 'border-emerald-500 shadow-md shadow-emerald-200/80 ring-2 ring-emerald-400/40 bg-emerald-50/50',
       borderIdle: isDark ? 'bg-slate-900/70 border-slate-800 hover:border-emerald-400/50' : 'bg-white/80 border-slate-200 hover:border-emerald-400/50',
       iconBg: isDark ? 'bg-emerald-500/20 text-emerald-400 border-emerald-400/40' : 'bg-emerald-100 text-emerald-800 border-emerald-300',
       titleColor: isDark ? 'text-emerald-300' : 'text-emerald-800',
@@ -108,96 +124,51 @@ export const NFArchitectureAndProcess: React.FC<NFArchitectureAndProcessProps> =
     },
   ];
 
-  // Dynamic scroll synchronization with passive listener & RAF
-  useEffect(() => {
-    let ticking = false;
-
-    const onScroll = () => {
-      if (isManualSelection || isPlaying) return;
-      if (!ticking) {
-        window.requestAnimationFrame(() => {
-          const el = processRef.current;
-          if (el) {
-            const rect = el.getBoundingClientRect();
-            const vh = window.innerHeight;
-
-            const startScroll = vh * 0.80;
-            const endScroll = vh * 0.25 - rect.height;
-            const totalScroll = startScroll - endScroll;
-            const currentScroll = startScroll - rect.top;
-
-            if (currentScroll <= 0) {
-              setScrollProgress(25);
-              setActiveStage(0);
-            } else {
-              const ratio = Math.max(0, Math.min(1, currentScroll / totalScroll));
-              const pct = Math.min(100, Math.max(25, Math.round(25 + ratio * 75)));
-              setScrollProgress(pct);
-
-              if (ratio < 0.25) {
-                setActiveStage(0);
-              } else if (ratio < 0.50) {
-                setActiveStage(1);
-              } else if (ratio < 0.75) {
-                setActiveStage(2);
-              } else {
-                setActiveStage(3);
-              }
-            }
-          }
-          ticking = false;
-        });
-        ticking = true;
-      }
-    };
-
-    window.addEventListener('scroll', onScroll, { passive: true });
-    onScroll();
-
-    return () => {
-      window.removeEventListener('scroll', onScroll);
-      if (manualTimeoutRef.current) clearTimeout(manualTimeoutRef.current);
-      if (playIntervalRef.current) clearInterval(playIntervalRef.current);
-    };
-  }, [isManualSelection, isPlaying]);
-
-  const handleSelectStage = (idx: number) => {
-    if (isPlaying && playIntervalRef.current) {
-      clearInterval(playIntervalRef.current);
+  const handleStageHover = (idx: number) => {
+    if (isPlaying) {
+      clearPlayInterval();
       setIsPlaying(false);
     }
     setActiveStage(idx);
-    setScrollProgress(Math.round(((idx + 1) / stages.length) * 100));
-    setIsManualSelection(true);
-    if (manualTimeoutRef.current) clearTimeout(manualTimeoutRef.current);
-    manualTimeoutRef.current = setTimeout(() => {
-      setIsManualSelection(false);
-    }, 4000);
+    setScrollProgress(stages[idx].progress);
+  };
+
+  const handleStageClick = (idx: number) => {
+    if (isPlaying) {
+      clearPlayInterval();
+      setIsPlaying(false);
+    }
+    setActiveStage(idx);
+    setScrollProgress(stages[idx].progress);
   };
 
   const handleTogglePlay = () => {
     if (isPlaying) {
-      if (playIntervalRef.current) clearInterval(playIntervalRef.current);
+      clearPlayInterval();
       setIsPlaying(false);
-      setIsManualSelection(false);
     } else {
+      clearPlayInterval();
       setIsPlaying(true);
-      setIsManualSelection(true);
-      let step = 0;
-      setActiveStage(0);
-      setScrollProgress(25);
+
+      let nextIndex = activeStage;
+      if (nextIndex >= stages.length - 1 || isFinished) {
+        nextIndex = 0;
+        setActiveStage(0);
+        setScrollProgress(stages[0].progress);
+        setIsFinished(false);
+      }
 
       playIntervalRef.current = setInterval(() => {
-        step += 1;
-        if (step >= stages.length) {
-          if (playIntervalRef.current) clearInterval(playIntervalRef.current);
+        nextIndex += 1;
+        if (nextIndex >= stages.length) {
+          clearPlayInterval();
           setIsPlaying(false);
-          setIsManualSelection(false);
+          setIsFinished(true);
         } else {
-          setActiveStage(step);
-          setScrollProgress(Math.round(((step + 1) / stages.length) * 100));
+          setActiveStage(nextIndex);
+          setScrollProgress(stages[nextIndex].progress);
         }
-      }, 1800);
+      }, 2500); // 2.5 seconds per stage
     }
   };
   return (
@@ -470,28 +441,31 @@ export const NFArchitectureAndProcess: React.FC<NFArchitectureAndProcessProps> =
             </div>
 
             {/* ── INTERACTIVE STAGE MILESTONE TABS ── */}
-            <div className="grid grid-cols-2 sm:grid-cols-4 gap-1.5 mb-3">
+            <div className="grid grid-cols-2 sm:grid-cols-4 gap-2 mb-3.5">
               {stages.map((st, i) => {
                 const isSelected = i === activeStage;
                 const isPast = i < activeStage;
                 return (
                   <button
                     key={i}
-                    onClick={() => handleSelectStage(i)}
-                    className={`py-1.5 px-1 rounded-xl text-center border transition-all duration-300 cursor-pointer ${
+                    type="button"
+                    onMouseEnter={() => handleStageHover(i)}
+                    onClick={() => handleStageClick(i)}
+                    onTouchStart={() => handleStageClick(i)}
+                    className={`py-2 px-1.5 rounded-xl text-center border transition-all duration-300 cursor-pointer ${
                       isSelected
                         ? isDark
-                          ? 'bg-sky-500/20 border-sky-400 text-sky-300 shadow-md shadow-sky-500/20 scale-[1.02]'
-                          : 'bg-sky-100 border-[#0284c7] text-[#0284c7] font-bold shadow-xs scale-[1.02]'
+                          ? 'bg-sky-500/25 border-sky-400 text-sky-300 shadow-md shadow-sky-500/20 ring-2 ring-sky-400/50 scale-[1.03]'
+                          : 'bg-sky-100 border-[#0284c7] text-[#0284c7] font-bold shadow-xs ring-2 ring-[#0284c7]/40 scale-[1.03]'
                         : isPast
                           ? isDark
-                            ? 'bg-emerald-500/10 border-emerald-500/30 text-emerald-400'
-                            : 'bg-emerald-50 border-emerald-200 text-emerald-800'
+                            ? 'bg-emerald-500/10 border-emerald-500/30 text-emerald-400 hover:border-emerald-400/50'
+                            : 'bg-emerald-50 border-emerald-200 text-emerald-800 hover:border-emerald-300'
                           : isDark
-                            ? 'bg-slate-900/50 border-slate-800 text-slate-400 hover:border-slate-700'
-                            : 'bg-white border-slate-200 text-slate-600 hover:border-slate-300'
+                            ? 'bg-slate-900/50 border-slate-800 text-slate-400 hover:border-slate-700 hover:text-slate-200'
+                            : 'bg-white border-slate-200 text-slate-600 hover:border-slate-300 hover:text-slate-800'
                     }`}
-                    title={`Click to inspect ${st.label}`}
+                    title={`Hover or tap to inspect ${st.label}`}
                   >
                     <div className="flex items-center justify-center gap-1">
                       {isPast ? (
@@ -499,9 +473,9 @@ export const NFArchitectureAndProcess: React.FC<NFArchitectureAndProcessProps> =
                       ) : isSelected ? (
                         <span className="w-1.5 h-1.5 rounded-full bg-amber-400 animate-ping flex-shrink-0" />
                       ) : null}
-                      <span className="text-[10px] font-mono font-black">{st.month}</span>
+                      <span className="text-[11px] font-mono font-black">{st.month}</span>
                     </div>
-                    <div className="text-[8px] font-mono font-bold truncate mt-0.5">
+                    <div className="text-[9px] font-mono font-bold truncate mt-0.5">
                       {st.tag}
                     </div>
                   </button>
@@ -527,21 +501,38 @@ export const NFArchitectureAndProcess: React.FC<NFArchitectureAndProcessProps> =
 
                 <div className="flex items-center gap-2 flex-shrink-0">
                   <button
+                    type="button"
                     onClick={handleTogglePlay}
-                    className={`text-[9px] font-mono font-bold px-2 py-0.5 rounded-lg border flex items-center gap-1 transition-all cursor-pointer ${
+                    className={`text-[10px] font-mono font-bold px-2.5 py-1 rounded-lg border flex items-center gap-1.5 transition-all cursor-pointer shadow-xs ${
                       isPlaying
-                        ? 'bg-amber-500 text-slate-950 border-amber-400 shadow-sm'
-                        : isDark
-                          ? 'bg-slate-800 hover:bg-slate-700 text-slate-300 border-slate-700'
-                          : 'bg-slate-100 hover:bg-slate-200 text-slate-700 border-slate-300'
+                        ? 'bg-amber-400 text-slate-950 border-amber-300 font-black shadow-amber-400/30'
+                        : isFinished
+                          ? 'bg-emerald-500/20 text-emerald-300 border-emerald-400/50 hover:bg-emerald-500/30'
+                          : isDark
+                            ? 'bg-slate-800 hover:bg-slate-700 text-slate-200 border-slate-700 hover:border-sky-400'
+                            : 'bg-slate-100 hover:bg-slate-200 text-slate-700 border-slate-300 hover:border-sky-400'
                     }`}
-                    title={isPlaying ? 'Pause Auto-Play' : 'Auto-Play Stages Walkthrough'}
+                    title={isPlaying ? 'Pause Auto-Play' : isFinished ? 'Replay Walkthrough' : 'Auto-Play Stages Walkthrough'}
                   >
-                    {isPlaying ? <Pause className="w-2.5 h-2.5" /> : <Play className="w-2.5 h-2.5" />}
-                    <span>{isPlaying ? 'Pause' : 'Play Flow'}</span>
+                    {isPlaying ? (
+                      <>
+                        <Pause className="w-3 h-3 text-slate-950 animate-pulse" />
+                        <span>Playing...</span>
+                      </>
+                    ) : isFinished ? (
+                      <>
+                        <RotateCcw className="w-3 h-3 text-emerald-400" />
+                        <span>Replay Flow</span>
+                      </>
+                    ) : (
+                      <>
+                        <Play className="w-3 h-3 text-amber-400" />
+                        <span>Play Flow</span>
+                      </>
+                    )}
                   </button>
 
-                  <span className={`text-xs font-mono font-black transition-all duration-300 ${
+                  <span className={`text-xs sm:text-sm font-mono font-black transition-all duration-300 ${
                     scrollProgress >= 100
                       ? isDark ? 'text-emerald-400' : 'text-emerald-700'
                       : isDark ? 'text-amber-400' : 'text-amber-700'
@@ -551,14 +542,15 @@ export const NFArchitectureAndProcess: React.FC<NFArchitectureAndProcessProps> =
                 </div>
               </div>
 
-              {/* Progress Track */}
+              {/* Progress Track with 400ms smooth transition */}
               <div className={`relative h-2.5 sm:h-3 rounded-full overflow-hidden p-0.5 ${
                 isDark ? 'bg-slate-800 border border-slate-700/60' : 'bg-slate-200 border border-slate-300'
               }`}>
                 <div
-                  className="h-full rounded-full transition-all duration-300 ease-out relative"
+                  className="h-full rounded-full relative"
                   style={{
                     width: `${scrollProgress}%`,
+                    transition: 'width 400ms ease-out',
                     background: 'linear-gradient(90deg, #38bdf8 0%, #f59e0b 50%, #10b981 100%)',
                     backgroundSize: '200% 100%',
                   }}
@@ -586,8 +578,11 @@ export const NFArchitectureAndProcess: React.FC<NFArchitectureAndProcessProps> =
                 {stages.map((s, i) => (
                   <button
                     key={i}
-                    onClick={() => handleSelectStage(i)}
-                    className={`text-[8px] font-mono font-bold text-center transition-colors duration-300 cursor-pointer hover:underline ${
+                    type="button"
+                    onMouseEnter={() => handleStageHover(i)}
+                    onClick={() => handleStageClick(i)}
+                    onTouchStart={() => handleStageClick(i)}
+                    className={`text-[9px] font-mono font-bold text-center transition-colors duration-300 cursor-pointer hover:underline ${
                       i === activeStage
                         ? isDark ? 'text-amber-300 font-black' : 'text-amber-700 font-black'
                         : i < activeStage
@@ -601,7 +596,7 @@ export const NFArchitectureAndProcess: React.FC<NFArchitectureAndProcessProps> =
               </div>
             </div>
 
-{/* 4 Sequential Stages Cards */}
+            {/* ── 4 SEQUENTIAL STAGES CARDS ── */}
             <div className="flex-1 flex flex-col justify-between space-y-2.5">
               {stages.map((stage, i) => {
                 const Icon = stage.Icon;
@@ -612,10 +607,12 @@ export const NFArchitectureAndProcess: React.FC<NFArchitectureAndProcessProps> =
                 return (
                   <div
                     key={i}
-                    onClick={() => handleSelectStage(i)}
-                    className={`p-4 sm:p-5 rounded-2xl border transition-all duration-300 flex items-start gap-3 cursor-pointer group ${
+                    onMouseEnter={() => handleStageHover(i)}
+                    onClick={() => handleStageClick(i)}
+                    onTouchStart={() => handleStageClick(i)}
+                    className={`p-3.5 sm:p-4 rounded-2xl border transition-all duration-300 flex items-start gap-3 cursor-pointer group ${
                       isCurrent
-                        ? `${stage.borderActive} scale-[1.01]`
+                        ? `${stage.borderActive} scale-[1.015]`
                         : isCompleted
                           ? isDark
                             ? 'bg-slate-900/80 border-emerald-500/30 hover:border-emerald-400/60'
@@ -624,7 +621,7 @@ export const NFArchitectureAndProcess: React.FC<NFArchitectureAndProcessProps> =
                     }`}
                   >
                     {/* Month Badge */}
-                    <div className={`w-12 h-12 rounded-xl border flex flex-col items-center justify-center flex-shrink-0 font-mono transition-all duration-300 ${
+                    <div className={`w-11 h-11 sm:w-12 sm:h-12 rounded-xl border flex flex-col items-center justify-center flex-shrink-0 font-mono transition-all duration-300 ${
                       stage.iconBg
                     } ${
                       isCurrent ? 'animate-badge-pulse ring-2 ring-amber-400/50' : ''
@@ -634,7 +631,7 @@ export const NFArchitectureAndProcess: React.FC<NFArchitectureAndProcessProps> =
                     </div>
 
                     <div className="flex-1 min-w-0">
-                      <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-1.5 sm:gap-2 mb-2">
+                      <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-1 sm:gap-2 mb-1.5">
                         <div className="flex items-center gap-1.5 flex-wrap min-w-0">
                           <h4 className={`text-xs sm:text-sm font-mono font-black uppercase tracking-wide leading-tight safe-wrap ${
                             stage.titleColor
@@ -666,12 +663,39 @@ export const NFArchitectureAndProcess: React.FC<NFArchitectureAndProcessProps> =
                       </div>
 
                       <p className={`text-xs sm:text-sm leading-relaxed font-medium transition-colors duration-300 ${
-                        isActive
-                          ? isDark ? 'text-slate-200' : 'text-slate-700'
-                          : isDark ? 'text-slate-400' : 'text-slate-500'
+                        isCurrent
+                          ? isDark ? 'text-slate-100 font-semibold' : 'text-slate-900 font-semibold'
+                          : isCompleted
+                            ? isDark ? 'text-slate-300' : 'text-slate-600'
+                            : isDark ? 'text-slate-400' : 'text-slate-500'
                       }`}>
                         {stage.desc}
                       </p>
+
+                      {/* Stage Deliverables shown prominently when active */}
+                      {isCurrent && (
+                        <div className="mt-2.5 pt-2 border-t border-slate-700/40 animate-fadeIn">
+                          <div className="text-[9px] font-mono font-bold uppercase tracking-wider text-amber-400 mb-1 flex items-center gap-1">
+                            <Sparkles className="w-2.5 h-2.5" />
+                            <span>Stage Deliverables:</span>
+                          </div>
+                          <div className="grid grid-cols-1 sm:grid-cols-3 gap-1.5">
+                            {stage.deliverables.map((item, dIdx) => (
+                              <div
+                                key={dIdx}
+                                className={`text-[9px] font-mono px-2 py-0.5 rounded border flex items-center gap-1 ${
+                                  isDark
+                                    ? 'bg-slate-900/90 text-slate-300 border-slate-700'
+                                    : 'bg-white text-slate-700 border-slate-200'
+                                }`}
+                              >
+                                <Check className="w-2.5 h-2.5 text-emerald-400 flex-shrink-0" />
+                                <span className="truncate">{item}</span>
+                              </div>
+                            ))}
+                          </div>
+                        </div>
+                      )}
                     </div>
                   </div>
                 );
